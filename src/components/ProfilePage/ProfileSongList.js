@@ -4,7 +4,7 @@ import Moment from 'react-moment'
 import { connect } from 'react-redux'
 import { Table } from 'semantic-ui-react'
 
-class SongList extends Component {
+class ProfileSongList extends Component {
   state = {
     column: null,
     data: this.props.data,
@@ -33,7 +33,7 @@ class SongList extends Component {
     const { column, direction } = this.state
 
     return (
-      <Table sortable celled fixed inverted>
+      <Table style={{ marginBottom: '5em' }} sortable celled fixed inverted>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
@@ -51,11 +51,7 @@ class SongList extends Component {
               onClick={this.handleSort('url')}>
               URL
             </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === 'username' ? direction : null}
-              onClick={this.handleSort('username')}>
-              Username
-            </Table.HeaderCell>
+
             <Table.HeaderCell
               sorted={column === 'created_at' ? direction : null}
               onClick={this.handleSort('created_at')}>
@@ -64,31 +60,28 @@ class SongList extends Component {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {_.map(
-            data,
-            ({ id, title, timestamp, url, username, created_at }) => (
-              <Table.Row key={id}>
-                <Table.Cell>{title}</Table.Cell>
-                <Table.Cell>{timestamp}</Table.Cell>
-                <Table.Cell selectable>
-                  <a href={`https://soundcloud.com${url}#t=${timestamp}`}>
-                    {`https://soundcloud.com${url}#t=${timestamp}`}
-                  </a>
-                </Table.Cell>
-                <Table.Cell>{username}</Table.Cell>
-                <Table.Cell>
-                  <Moment fromNow>{created_at}</Moment>
-                </Table.Cell>
-              </Table.Row>
-            )
-          )}
+          {_.map(data, ({ id, title, timestamp, url, created_at }) => (
+            <Table.Row key={id}>
+              <Table.Cell>{title}</Table.Cell>
+              <Table.Cell>{timestamp}</Table.Cell>
+              <Table.Cell selectable>
+                <a href={`https://soundcloud.com${url}#t=${timestamp}`}>
+                  {`https://soundcloud.com${url}#t=${timestamp}`}
+                </a>
+              </Table.Cell>
+
+              <Table.Cell>
+                <Moment fromNow>{created_at}</Moment>
+              </Table.Cell>
+            </Table.Row>
+          ))}
         </Table.Body>
       </Table>
     )
   }
 }
 const mapStateToProps = (state, props) => {
-  return { data: state.songs.data }
+  return { data: state.auth.user.userSongs }
 }
 
-export default connect(mapStateToProps, null)(SongList)
+export default connect(mapStateToProps, null)(ProfileSongList)

@@ -3,3 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.visible.transition {
+  margin: auto !important;
+  margin-top: auto !important;
+  display: inline-block !important;
+  position: relative;
+  top: -1%;
+  left: 17%;
+}

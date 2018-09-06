@@ -31,7 +31,7 @@ class TopSection extends Component {
               <Item.Extra>{username || ''}</Item.Extra>
               <Item.Meta>{bio || ''}</Item.Meta>
               <Item.Meta>{location || ''}</Item.Meta>
-              <Item.Meta>Favorite Style: {favorite_style || ''}</Item.Meta>
+
               <br />
               <div style={{ margingRight: '10em' }}>
                 <ProfileModal user={this.props.user} />

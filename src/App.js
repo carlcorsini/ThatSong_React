@@ -5,6 +5,7 @@ import logo from './logo.svg'
 import './App.css'
 import Main from './components/Main/Main'
 import Navbar from './components/Navbar/Navbar'
+import ProfilePage from './components/ProfilePage/ProfilePage'
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
             <Route path="/" component={Navbar} />
             <Route exact path="/" component={() => <Redirect to="/that" />} />
             <Route path="/that" component={Main} />
+            <Route path="/profile" component={ProfilePage} />
           </div>
         </Router>
       </div>
