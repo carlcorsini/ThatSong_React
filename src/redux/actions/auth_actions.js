@@ -95,7 +95,7 @@ export const getAuth = () => {
       const auth = await authentication()
 
       let { user } = await auth
-
+      console.log(user)
       dispatch({
         type: 'GET_AUTH_SUCCESS',
         payload: {
@@ -105,7 +105,7 @@ export const getAuth = () => {
         }
       })
     } catch (error) {
-      dispatch({ type: GET_AUTH_FAILED, payload: error })
+      dispatch({ type: GET_AUTH_FAILED, payload: { error, isLoggedIn: false } })
     }
   }
 }
