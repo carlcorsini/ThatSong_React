@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import Moment from 'react-moment'
 import { connect } from 'react-redux'
 import { Table } from 'semantic-ui-react'
 
@@ -55,19 +56,27 @@ class SongList extends Component {
               onClick={this.handleSort('user_id')}>
               User ID
             </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === 'created_at' ? direction : null}
+              onClick={this.handleSort('created_at')}>
+              Created
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {_.map(data, ({ id, title, timestamp, url, user_id }) => (
+          {_.map(data, ({ id, title, timestamp, url, user_id, created_at }) => (
             <Table.Row key={id}>
               <Table.Cell>{title}</Table.Cell>
               <Table.Cell>{timestamp}</Table.Cell>
               <Table.Cell selectable>
                 <a href={`https://soundcloud.com${url}#t=${timestamp}`}>
-                  {url}
+                  {`https://soundcloud.com${url}#t=${timestamp}`}
                 </a>
               </Table.Cell>
               <Table.Cell>{user_id}</Table.Cell>
+              <Table.Cell>
+                <Moment fromNow>{created_at}</Moment>
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

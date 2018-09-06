@@ -7,9 +7,11 @@ import registerServiceWorker from './registerServiceWorker'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 import { fetchSongs } from './redux/actions/songs'
+import { getAuth } from './redux/actions/auth_actions'
 
 const newStore = store()
 
+newStore.dispatch(getAuth())
 newStore.dispatch(fetchSongs())
 
 ReactDOM.render(

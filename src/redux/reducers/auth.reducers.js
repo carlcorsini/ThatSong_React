@@ -15,10 +15,10 @@ let initialState = {
   isLoggedIn: false,
   isLoading: false,
   user: {},
-  userBeers: [],
   showLoginError: false,
   showSignupError: false,
-  showSignupSuccess: false
+  showSignupSuccess: false,
+  open: true
 }
 
 export default (state = initialState, action) => {
@@ -26,11 +26,11 @@ export default (state = initialState, action) => {
     case USER_LOGIN_PENDING:
       return { ...state, isLoading: true }
     case USER_LOGIN_SUCCESS:
+      console.log(action.payload)
       return {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
-        userBeers: action.payload.userBeers,
         isLoggedIn: true,
         isLoading: false
       }
@@ -42,7 +42,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         open: false,
+        user: action.payload.user,
+        token: action.payload.token,
         isLoading: false,
+        isLoggedIn: true,
         showSignupSuccess: true
       }
     case USER_SIGNUP_FAILED:
@@ -59,14 +62,12 @@ export default (state = initialState, action) => {
     case GET_AUTH_SUCCESS:
       return { ...state, user: action.payload.user, ...action.payload }
     case GET_AUTH_FAILED:
+      console.log(action, 'action in auth reducers')
+      console.log(state, 'state in auth reducers')
       return { ...state }
     case ADD_FAVORITE_SUCCESS:
       return {
-        ...state,
-        user: {
-          ...state.user,
-          beers: [...state.user.beers, { ...action.payload }]
-        }
+        ...state
       }
     default:
       return state
