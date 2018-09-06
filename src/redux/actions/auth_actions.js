@@ -1,10 +1,6 @@
-import decode from 'jwt-decode'
 import authenticate from '../../api/token'
-import getUser from '../../api/getUser'
 import createUser from '../../api/createUser'
 import checkAuthentication from '../../utils/checkAuthentication'
-import env from '../../env'
-import addFavoriteBeer from '../../api/addFavoriteBeer'
 
 export const ADD_FAVORITE_SUCCESS = 'ADD_FAVORITE_SUCCESS'
 export const ADD_FAVORITE_FAILED = 'ADD_FAVORITE_FAILED'
@@ -25,16 +21,18 @@ export const GET_AUTH_FAILED = 'GET_AUTH_FAILED'
 export const userLogin = (credentials, history) => {
   return async dispatch => {
     try {
-      const { token } = await authenticate(credentials)
+      const user = await authenticate(credentials)
 
+      const { token } = await user
       localStorage.setItem('token', token)
-      const { identity: user_id } = decode(token)
-      const user = await getUser(user_id, { token })
+      // const { identity: user_id } = decode(token)
+
       dispatch({ type: USER_LOGIN_PENDING })
       dispatch({
         type: USER_LOGIN_SUCCESS,
         payload: { user, token }
       })
+      history.push(`/profile`, user)
       return { token, user }
     } catch (err) {
       dispatch({
@@ -55,12 +53,36 @@ export const userLogout = () => {
 }
 
 export const userSignup = (attributes, history) => {
+  console.log(history)
   return async (dispatch, getState) => {
     try {
-      const user = await createUser(attributes)
-      dispatch({ type: 'USER_SIGNUP_SUCCESS', user })
+      let [user] = await createUser(attributes)
+
+      let { username } = await user
+      let { password } = attributes
+      const userWithToken = await authenticate({
+        username,
+        password
+      })
+
+      const { token } = await userWithToken
+      localStorage.setItem('token', token)
+
+      dispatch({
+        type: USER_SIGNUP_SUCCESS,
+        payload: {
+          token,
+          user
+        }
+      })
+      history.push(`/profile`, user)
       return user
-    } catch (error) {}
+    } catch (err) {
+      dispatch({
+        type: USER_SIGNUP_FAILED,
+        payload: {}
+      })
+    }
   }
 }
 
@@ -68,55 +90,22 @@ export const getAuth = () => {
   return async dispatch => {
     try {
       const authentication = async () => {
-        return await checkAuthentication({
-          baseUrl: env.default
-        })
+        return await checkAuthentication()
       }
-      const auth = authentication()
-      let { token, user } = await auth
+      const auth = await authentication()
 
-      let friendsArray = user.friends
+      let { user } = await auth
 
-      user.friends = []
-      friendsArray.forEach(async friend => {
-        let userResponse = await getUser(friend)
-
-        user.friends.push(userResponse)
-        friendsArray.push(userResponse)
-      })
-
-      const userBeers = user.beers
       dispatch({
         type: 'GET_AUTH_SUCCESS',
         payload: {
-          user,
-          userBeers,
+          user: user,
           isLoggedIn: true,
-          token: token,
           authenticatedUserId: user.id
         }
       })
     } catch (error) {
       dispatch({ type: GET_AUTH_FAILED, payload: error })
-    }
-  }
-}
-
-export const addFavorite = (user_id, beer_id, history) => {
-  return async dispatch => {
-    try {
-      let response = await addFavoriteBeer(user_id, beer_id)
-      let addBeer = await response.json()
-      dispatch({
-        type: ADD_FAVORITE_SUCCESS,
-        payload: addBeer
-      })
-      history.push(`/beers`, addBeer)
-    } catch (err) {
-      dispatch({
-        type: ADD_FAVORITE_FAILED,
-        payload: err
-      })
     }
   }
 }
