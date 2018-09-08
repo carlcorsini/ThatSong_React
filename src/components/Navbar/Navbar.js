@@ -21,6 +21,7 @@ class NavbarComponent extends Component {
         className="nav-bar"
         stackable
         inverted>
+        <Menu.Item header>ThatSong</Menu.Item>
         <Menu.Item style={{ textDecoration: 'none' }} href="/">
           <Icon name="home" />
           Home

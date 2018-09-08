@@ -6,16 +6,18 @@ import ProfileSongList from './ProfileSongList'
 
 class ProfilePage extends Component {
   render() {
-    return !this.props.user ? (
-      <div />
-    ) : (
+    return (
       <Container textAlign="left">
-        <Grid columns={2}>
+        <Grid>
           <Grid.Column>
-            <TopSection user={this.props.user} />
+            <Grid.Row>
+              <TopSection user={this.props.user} />
+            </Grid.Row>
+            <Grid.Row>
+              <ProfileSongList />
+            </Grid.Row>
           </Grid.Column>
         </Grid>
-        <ProfileSongList />
       </Container>
     )
   }
