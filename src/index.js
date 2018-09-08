@@ -14,6 +14,10 @@ const newStore = store()
 newStore.dispatch(getAuth())
 newStore.dispatch(fetchSongs())
 
+// const unsubscribe = newStore.subscribe(() => {
+// unsubscribe()
+// })
+
 ReactDOM.render(
   <Provider store={newStore}>
     <App />

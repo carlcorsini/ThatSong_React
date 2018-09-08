@@ -1,19 +1,34 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import Moment from 'react-moment'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { connect } from 'react-redux'
-import { Table } from 'semantic-ui-react'
+import { Table, Button, Icon } from 'semantic-ui-react'
 
 class SongList extends Component {
+  // constructor(props) {
+  //   super(props)
+  //
+  //   this.state = {
+  //     column: null,
+  //     data: props.data,
+  //     direction: null
+  //   }
+  // }
   state = {
     column: null,
-    data: this.props.data,
+    data: [],
     direction: null
   }
 
-  handleSort = clickedColumn => () => {
+  componentDidMount() {
     const { data } = this.props
+    this.setState({ data: data })
+  }
+
+  handleSort = clickedColumn => () => {
     const { column, direction } = this.state
+    const { data } = this.props
 
     if (column !== clickedColumn) {
       this.setState({
@@ -33,27 +48,37 @@ class SongList extends Component {
     const { column, direction } = this.state
 
     return (
-      <Table sortable celled fixed inverted>
+      <Table striped sortable celled inverted>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
-              sorted={column === 'title' ? direction : null}
-              onClick={this.handleSort('title')}>
+            // sorted={column === 'title' ? direction : null}
+            // onClick={this.handleSort('title')}
+            >
               Title
             </Table.HeaderCell>
             <Table.HeaderCell
-              sorted={column === 'timestamp' ? direction : null}
-              onClick={this.handleSort('timestamp')}>
+            // sorted={column === 'timestamp' ? direction : null}
+            // onClick={this.handleSort('timestamp')}
+            >
               Timestamp
             </Table.HeaderCell>
             <Table.HeaderCell
-              sorted={column === 'url' ? direction : null}
-              onClick={this.handleSort('url')}>
+            // sorted={column === 'url' ? direction : null}
+            // onClick={this.handleSort('url')}
+            >
+              Soundcloud
+            </Table.HeaderCell>
+            <Table.HeaderCell
+            // sorted={column === 'url' ? direction : null}
+            // onClick={this.handleSort('url')}
+            >
               URL
             </Table.HeaderCell>
             <Table.HeaderCell
-              sorted={column === 'username' ? direction : null}
-              onClick={this.handleSort('username')}>
+            // sorted={column === 'username' ? direction : null}
+            // onClick={this.handleSort('username')}
+            >
               Username
             </Table.HeaderCell>
             <Table.HeaderCell
@@ -70,10 +95,23 @@ class SongList extends Component {
               <Table.Row key={id}>
                 <Table.Cell>{title}</Table.Cell>
                 <Table.Cell>{timestamp}</Table.Cell>
-                <Table.Cell selectable>
+                <Table.Cell style={{ textAlign: 'center' }} selectable>
                   <a href={`https://soundcloud.com${url}#t=${timestamp}`}>
-                    {`https://soundcloud.com${url}#t=${timestamp}`}
+                    <Icon
+                      size="big"
+                      // link={`https://soundcloud.com${url}#t=${timestamp}`}
+                      fitted
+                      name="soundcloud"
+                    />
                   </a>
+                </Table.Cell>
+                <Table.Cell
+                  style={{ textAlign: 'center', cursor: 'pointer' }}
+                  selectable>
+                  <CopyToClipboard
+                    text={`https://soundcloud.com${url}#t=${timestamp}`}>
+                    <Icon size="big" name="clipboard" />
+                  </CopyToClipboard>
                 </Table.Cell>
                 <Table.Cell>{username}</Table.Cell>
                 <Table.Cell>
@@ -88,6 +126,7 @@ class SongList extends Component {
   }
 }
 const mapStateToProps = (state, props) => {
+  console.log(state.songs.data, 'state in mapstate')
   return { data: state.songs.data }
 }
 

@@ -7,13 +7,15 @@ class Main extends Component {
     console.log(this.state, 'main state')
     return (
       <div>
-        <Container fluid>
+        {/* <Container fluid>
           <HomeHeading />
-        </Container>
+        </Container> */}
         <Container>
           <Grid padded="vertically" divided="vertically">
             <Grid.Row>
-              <SongList />
+              <Container style={{ paddingTop: '3em' }}>
+                <SongList />
+              </Container>
             </Grid.Row>
           </Grid>
         </Container>
