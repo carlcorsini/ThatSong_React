@@ -1,25 +1,35 @@
 import React, { Component } from 'react'
-import HomeHeading from './HomeHeading'
 import { Container, Grid } from 'semantic-ui-react'
 import SongList from './SongList'
+import FilterSongs from './FilterSongs'
+
 class Main extends Component {
   render() {
-    console.log(this.state, 'main state')
     return (
-      <div>
-        {/* <Container fluid>
-          <HomeHeading />
-        </Container> */}
-        <Container>
-          <Grid padded="vertically" divided="vertically">
-            <Grid.Row>
-              <Container style={{ paddingTop: '3em' }}>
-                <SongList />
+      <Container>
+        <Grid stackable>
+          <Grid.Row columns={2} collapsable>
+            <Grid.Column />
+            <Grid.Column>
+              <Container
+                style={{
+                  marginTop: '2em'
+                }}>
+                <FilterSongs />
               </Container>
-            </Grid.Row>
-          </Grid>
-        </Container>
-      </div>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Container
+              style={{
+                minHeight: '45em',
+                boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+              }}>
+              <SongList />
+            </Container>
+          </Grid.Row>
+        </Grid>
+      </Container>
     )
   }
 }

@@ -74,15 +74,15 @@ class LoginModal extends Component {
                   onChange={e => this.setState({ password: e.target.value })}
                 />
               </Form.Group>
-              <Button inverted color="green" className="mr-3" type="submit">
-                Submit
-              </Button>
               <Button
                 inverted
                 color="red"
                 content="Close"
                 onClick={this.close}
               />
+              <Button inverted color="green" className="mr-3" type="submit">
+                Login
+              </Button>
               {this.props.showLoginError ? (
                 <Message
                   color="red"

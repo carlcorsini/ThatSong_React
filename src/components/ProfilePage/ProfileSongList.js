@@ -8,13 +8,18 @@ import { Table, Icon } from 'semantic-ui-react'
 class ProfileSongList extends Component {
   state = {
     column: null,
-    data: this.props.data,
+    data: [],
     direction: null
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.data !== this.props.data) {
+      this.setState({ data: nextProps.data })
+    }
+  }
+
   handleSort = clickedColumn => () => {
-    const { data } = this.props
-    const { column, direction } = this.state
+    const { column, direction, data } = this.state
 
     if (column !== clickedColumn) {
       this.setState({
@@ -30,38 +35,44 @@ class ProfileSongList extends Component {
     })
   }
   render() {
-    const { data } = this.props
-    const { column, direction } = this.state
+    const { column, direction, data } = this.state
 
     return (
       <Table striped sortable celled inverted>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
-            // sorted={column === 'title' ? direction : null}
-            // onClick={this.handleSort('title')}
-            >
+              style={{ textAlign: 'center' }}
+              sorted={column === 'title' ? direction : null}
+              onClick={this.handleSort('title')}>
               Title
             </Table.HeaderCell>
             <Table.HeaderCell
-            // sorted={column === 'timestamp' ? direction : null}
-            // onClick={this.handleSort('timestamp')}
-            >
+              style={{ textAlign: 'center' }}
+              sorted={column === 'timestamp' ? direction : null}
+              onClick={this.handleSort('timestamp')}>
               Timestamp
             </Table.HeaderCell>
             <Table.HeaderCell
-            // sorted={column === 'url' ? direction : null}
-            // onClick={this.handleSort('url')}
-            >
-              Soundcloud
+              style={{ textAlign: 'center' }}
+              sorted={column === 'source' ? direction : null}
+              onClick={this.handleSort('source')}>
+              Source
             </Table.HeaderCell>
             <Table.HeaderCell
-            // sorted={column === 'url' ? direction : null}
-            // onClick={this.handleSort('url')}
-            >
+              style={{ textAlign: 'center' }}
+              sorted={column === 'url' ? direction : null}
+              onClick={this.handleSort('url')}>
               URL
             </Table.HeaderCell>
             <Table.HeaderCell
+              style={{ textAlign: 'center' }}
+              sorted={column === 'notes' ? direction : null}
+              onClick={this.handleSort('notes')}>
+              Notes
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              style={{ textAlign: 'center' }}
               sorted={column === 'created_at' ? direction : null}
               onClick={this.handleSort('created_at')}>
               Created
@@ -69,18 +80,17 @@ class ProfileSongList extends Component {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {_.map(data, ({ id, title, timestamp, url, created_at }) => (
+          {_.map(data, ({ id, title, timestamp, url, notes, created_at }) => (
             <Table.Row key={id}>
-              <Table.Cell>{title}</Table.Cell>
-              <Table.Cell>{timestamp}</Table.Cell>
+              <Table.Cell style={{ textAlign: 'center' }}>{title}</Table.Cell>
+              <Table.Cell style={{ textAlign: 'center' }}>
+                {timestamp}
+              </Table.Cell>
               <Table.Cell style={{ textAlign: 'center' }} selectable>
-                <a href={`https://soundcloud.com${url}#t=${timestamp}`}>
-                  <Icon
-                    size="big"
-                    // link={`https://soundcloud.com${url}#t=${timestamp}`}
-                    fitted
-                    name="soundcloud"
-                  />
+                <a
+                  target="_blank"
+                  href={`https://soundcloud.com${url}#t=${timestamp}`}>
+                  <Icon size="big" fitted name="soundcloud" />
                 </a>
               </Table.Cell>
               <Table.Cell
@@ -88,11 +98,11 @@ class ProfileSongList extends Component {
                 selectable>
                 <CopyToClipboard
                   text={`https://soundcloud.com${url}#t=${timestamp}`}>
-                  <Icon size="big" name="clipboard" />
+                  <Icon fitted size="big" name="clipboard" />
                 </CopyToClipboard>
               </Table.Cell>
-
-              <Table.Cell>
+              <Table.Cell style={{ textAlign: 'center' }}>{notes}</Table.Cell>
+              <Table.Cell style={{ textAlign: 'center' }}>
                 <Moment fromNow>{created_at}</Moment>
               </Table.Cell>
             </Table.Row>
@@ -102,8 +112,12 @@ class ProfileSongList extends Component {
     )
   }
 }
-const mapStateToProps = (state, props) => {
-  return { data: state.auth.user.userSongs }
+const mapStateToProps = ({ songs, filterSongs }) => {
+  return {
+    data: songs.data.filter(song =>
+      song.title.toLowerCase().includes(filterSongs.filterSongs)
+    )
+  }
 }
 
 export default connect(mapStateToProps, null)(ProfileSongList)
