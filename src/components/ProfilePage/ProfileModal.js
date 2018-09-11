@@ -10,11 +10,13 @@ import {
   Modal,
   Form,
   Input,
-  TextArea
+  TextArea,
+  Confirm
 } from 'semantic-ui-react'
 
 class ProfileModal extends Component {
   state = {
+    confirm_open: false,
     open: false,
     first_name: '',
     last_name: '',
@@ -22,6 +24,13 @@ class ProfileModal extends Component {
     location: '',
     bio: ''
   }
+
+  handleConfirm = () =>
+    this.setState({ result: 'confirmed', confirm_open: false })
+  handleCancel = () =>
+    this.setState({ result: 'cancelled', confirm_open: false })
+  showConfirm = () => this.setState({ cofirm_open: true })
+
   show = dimmer => () => this.setState({ dimmer, open: true })
   close = () => this.setState({ open: false })
 
@@ -47,25 +56,24 @@ class ProfileModal extends Component {
       bio
     } = this.props.user
 
-    const { open, dimmer } = this.state
+    const { confirm_open, open, dimmer } = this.state
     return (
-      <div style={{ marginRight: '10em' }}>
-        <Button secondary onClick={this.show('blurring')}>
-          Edit
+      <div>
+        <Button size="mini" basic secondary onClick={this.show('blurring')}>
+          Edit Profile
         </Button>
 
         <Modal
-          style={{ width: '45%' }}
+          basic
+          centered={true}
           dimmer={dimmer}
           open={open}
           onClose={this.close}>
-          <Modal.Header>Edit Profile</Modal.Header>
           <Modal.Content image>
-            <Image wrapped size="medium" src={profile_pic} />
-            <Modal.Description>
-              <Header>{'   '}</Header>
-            </Modal.Description>
-            <Form onSubmit={this.handleSubmit}>
+            <Form style={{ width: '45%' }} basic onSubmit={this.handleSubmit}>
+              <Image centered rounded wrapped size="small" src={profile_pic} />
+              <br />
+              <br />
               <Form.Group>
                 <Form.Field
                   onChange={e => {
@@ -73,7 +81,6 @@ class ProfileModal extends Component {
                   }}
                   defaultValue={first_name}
                   control={Input}
-                  label="First name"
                   placeholder="First name"
                 />
               </Form.Group>
@@ -84,7 +91,6 @@ class ProfileModal extends Component {
                   }}
                   control={Input}
                   defaultValue={last_name}
-                  label="Last name"
                   placeholder="Last name"
                 />
               </Form.Group>
@@ -95,7 +101,6 @@ class ProfileModal extends Component {
                   }}
                   control={Input}
                   defaultValue={username}
-                  label="Username"
                   placeholder="Username"
                 />
               </Form.Group>
@@ -106,7 +111,6 @@ class ProfileModal extends Component {
                   }}
                   defaultValue={location}
                   control={Input}
-                  label="Location"
                   placeholder="Location"
                 />
               </Form.Group>
@@ -116,28 +120,29 @@ class ProfileModal extends Component {
                     this.setState({ bio: e.target.value })
                   }}
                   defaultValue={bio}
-                  control={TextArea}
-                  label="Bio"
+                  control={Input}
                   placeholder="Bio"
                 />
               </Form.Group>
-              <Form.Field type="submit" control={Button}>
-                Submit
+              <Form.Field positive type="submit" control={Button}>
+                Save Changes
               </Form.Field>
+              <Button.Group basic vertical>
+                <Button
+                  negative
+                  icon="x"
+                  content="Close"
+                  onClick={this.close}
+                />
+              </Button.Group>
             </Form>
           </Modal.Content>
-          <Modal.Actions>
-            <Button onClick={this.handleDelete} color="black">
-              Delete Profile
-            </Button>
-            <Button
-              positive
-              icon="checkmark"
-              labelPosition="right"
-              content="Confirm Changes"
-              onClick={this.close}
-            />
-          </Modal.Actions>
+          <Button onClick={this.showConfirm}>Delete Profile</Button>
+          <Confirm
+            open={confirm_open}
+            onCancel={this.handleCancel}
+            onConfirm={this.handleDelete}
+          />
         </Modal>
       </div>
     )

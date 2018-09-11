@@ -1,6 +1,6 @@
 export const FETCH_SONGS_SUCCESS = 'FETCH_SONGS_SUCCESS'
 export const FETCH_SONGS_FAILED = 'FETCH_SONGS_FAILED'
-
+export const FILTER_SONG = 'FILTER_SONG'
 const BASE_URL = 'http://localhost:3000'
 export const fetchSongs = () => {
   return async dispatch => {
@@ -17,5 +17,14 @@ export const fetchSongs = () => {
         payload: err
       })
     }
+  }
+}
+
+export const filterSongs = (str, type) => {
+  return dispatch => {
+    dispatch({
+      type: FILTER_SONG,
+      payload: { filterSongs: str, type }
+    })
   }
 }

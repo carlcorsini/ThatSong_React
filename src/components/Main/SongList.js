@@ -5,30 +5,23 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { connect } from 'react-redux'
 import { Table, Button, Icon } from 'semantic-ui-react'
 
+let data = [{ blah: 'blah' }]
+
 class SongList extends Component {
-  // constructor(props) {
-  //   super(props)
-  //
-  //   this.state = {
-  //     column: null,
-  //     data: props.data,
-  //     direction: null
-  //   }
-  // }
   state = {
     column: null,
     data: [],
     direction: null
   }
 
-  componentDidMount() {
-    const { data } = this.props
-    this.setState({ data: data })
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.data !== this.props.data) {
+      this.setState({ data: nextProps.data })
+    }
   }
 
   handleSort = clickedColumn => () => {
-    const { column, direction } = this.state
-    const { data } = this.props
+    const { column, direction, data } = this.state
 
     if (column !== clickedColumn) {
       this.setState({
@@ -44,44 +37,44 @@ class SongList extends Component {
     })
   }
   render() {
-    const { data } = this.props
-    const { column, direction } = this.state
+    const { column, direction, data } = this.state
 
     return (
       <Table striped sortable celled inverted>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
-            // sorted={column === 'title' ? direction : null}
-            // onClick={this.handleSort('title')}
-            >
+              style={{ textAlign: 'center' }}
+              sorted={column === 'title' ? direction : null}
+              onClick={this.handleSort('title')}>
               Title
             </Table.HeaderCell>
             <Table.HeaderCell
-            // sorted={column === 'timestamp' ? direction : null}
-            // onClick={this.handleSort('timestamp')}
-            >
+              style={{ textAlign: 'center' }}
+              sorted={column === 'timestamp' ? direction : null}
+              onClick={this.handleSort('timestamp')}>
               Timestamp
             </Table.HeaderCell>
             <Table.HeaderCell
-            // sorted={column === 'url' ? direction : null}
-            // onClick={this.handleSort('url')}
-            >
-              Soundcloud
+              style={{ textAlign: 'center' }}
+              sorted={column === 'source' ? direction : null}
+              onClick={this.handleSort('source')}>
+              Source
             </Table.HeaderCell>
             <Table.HeaderCell
-            // sorted={column === 'url' ? direction : null}
-            // onClick={this.handleSort('url')}
-            >
+              style={{ textAlign: 'center' }}
+              sorted={column === 'url' ? direction : null}
+              onClick={this.handleSort('url')}>
               URL
             </Table.HeaderCell>
             <Table.HeaderCell
-            // sorted={column === 'username' ? direction : null}
-            // onClick={this.handleSort('username')}
-            >
+              style={{ textAlign: 'center' }}
+              sorted={column === 'username' ? direction : null}
+              onClick={this.handleSort('username')}>
               Username
             </Table.HeaderCell>
             <Table.HeaderCell
+              style={{ textAlign: 'center' }}
               sorted={column === 'created_at' ? direction : null}
               onClick={this.handleSort('created_at')}>
               Created
@@ -93,16 +86,15 @@ class SongList extends Component {
             data,
             ({ id, title, timestamp, url, username, created_at }) => (
               <Table.Row key={id}>
-                <Table.Cell>{title}</Table.Cell>
-                <Table.Cell>{timestamp}</Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }}>{title}</Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }}>
+                  {timestamp}
+                </Table.Cell>
                 <Table.Cell style={{ textAlign: 'center' }} selectable>
-                  <a href={`https://soundcloud.com${url}#t=${timestamp}`}>
-                    <Icon
-                      size="big"
-                      // link={`https://soundcloud.com${url}#t=${timestamp}`}
-                      fitted
-                      name="soundcloud"
-                    />
+                  <a
+                    target="_blank"
+                    href={`https://soundcloud.com${url}#t=${timestamp}`}>
+                    <Icon size="big" fitted name="soundcloud" />
                   </a>
                 </Table.Cell>
                 <Table.Cell
@@ -110,11 +102,13 @@ class SongList extends Component {
                   selectable>
                   <CopyToClipboard
                     text={`https://soundcloud.com${url}#t=${timestamp}`}>
-                    <Icon size="big" name="clipboard" />
+                    <Icon fitted size="big" name="clipboard" />
                   </CopyToClipboard>
                 </Table.Cell>
-                <Table.Cell>{username}</Table.Cell>
-                <Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }}>
+                  {username}
+                </Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }}>
                   <Moment fromNow>{created_at}</Moment>
                 </Table.Cell>
               </Table.Row>
@@ -125,9 +119,13 @@ class SongList extends Component {
     )
   }
 }
-const mapStateToProps = (state, props) => {
-  console.log(state.songs.data, 'state in mapstate')
-  return { data: state.songs.data }
+
+const mapStateToProps = ({ songs, filterSongs }) => {
+  return {
+    data: songs.data.filter(song =>
+      song.title.toLowerCase().includes(filterSongs.filterSongs)
+    )
+  }
 }
 
 export default connect(mapStateToProps, null)(SongList)

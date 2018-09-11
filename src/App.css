@@ -1,8 +1,8 @@
 .App {
   text-align: center;
-  background-color: black;
   background-image: url('https://thumbs.dreamstime.com/b/music-party-seamless-background-pattern-icons-sketch-style-64533419.jpg');
-  background-repeat: repeat
+  background-repeat: repeat-vertical;
+  background-attachment: fixed;
 }
 
 .App-logo {
