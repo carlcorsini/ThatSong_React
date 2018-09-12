@@ -5,8 +5,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { connect } from 'react-redux'
 import { Table, Button, Icon } from 'semantic-ui-react'
 
-let data = [{ blah: 'blah' }]
-
 class SongList extends Component {
   state = {
     column: null,
@@ -37,6 +35,7 @@ class SongList extends Component {
     })
   }
   render() {
+    console.log('will is chill')
     const { column, direction, data } = this.state
 
     return (
@@ -48,6 +47,12 @@ class SongList extends Component {
               sorted={column === 'title' ? direction : null}
               onClick={this.handleSort('title')}>
               Title
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              style={{ textAlign: 'center' }}
+              sorted={column === 'artist' ? direction : null}
+              onClick={this.handleSort('artist')}>
+              Artist
             </Table.HeaderCell>
             <Table.HeaderCell
               style={{ textAlign: 'center' }}
@@ -84,9 +89,12 @@ class SongList extends Component {
         <Table.Body>
           {_.map(
             data,
-            ({ id, title, timestamp, url, username, created_at }) => (
+            ({ id, title, artist, timestamp, url, username, created_at }) => (
               <Table.Row key={id}>
                 <Table.Cell style={{ textAlign: 'center' }}>{title}</Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }}>
+                  {artist}
+                </Table.Cell>
                 <Table.Cell style={{ textAlign: 'center' }}>
                   {timestamp}
                 </Table.Cell>
@@ -122,8 +130,10 @@ class SongList extends Component {
 
 const mapStateToProps = ({ songs, filterSongs }) => {
   return {
-    data: songs.data.filter(song =>
-      song.title.toLowerCase().includes(filterSongs.filterSongs)
+    data: songs.data.filter(
+      song =>
+        song.title.toLowerCase().includes(filterSongs.filterSongs) ||
+        song.artist.toLowerCase().includes(filterSongs.filterSongs)
     )
   }
 }
