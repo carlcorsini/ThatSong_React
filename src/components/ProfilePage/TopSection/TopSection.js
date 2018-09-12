@@ -11,7 +11,7 @@ class TopSection extends Component {
       profile_pic,
       username,
       bio,
-      favorite_style
+      soundcloud_url
     } = this.props.user
     return (
       <Container className="top-section" fluid>
@@ -42,7 +42,7 @@ class TopSection extends Component {
                   <Item.Meta>{bio || ''}</Item.Meta>
                   <Item.Meta>{location || ''}</Item.Meta>
                   <Item.Meta>
-                    <a href="https://soundcloud.com/carl-corsini">
+                    <a target="_blank" href={soundcloud_url}>
                       <Icon size="huge" name="soundcloud" link={true} />
                     </a>
                   </Item.Meta>

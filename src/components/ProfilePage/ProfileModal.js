@@ -11,13 +11,15 @@ import {
   Form,
   Input,
   TextArea,
-  Confirm
+  Icon
 } from 'semantic-ui-react'
 
 class ProfileModal extends Component {
   state = {
     confirm_open: false,
-    open: false
+    open: false,
+    save_disabled: true,
+    delete_disabled: true
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,7 +31,8 @@ class ProfileModal extends Component {
         location,
         profile_pic,
         username,
-        bio
+        bio,
+        soundcloud_url
       } = this.props.user
 
       this.setState({
@@ -39,31 +42,57 @@ class ProfileModal extends Component {
         location,
         profile_pic,
         username,
-        bio
+        bio,
+        soundcloud_url
       })
     }
   }
 
   handleConfirm = () =>
     this.setState({ result: 'confirmed', confirm_open: false })
+
   handleCancel = () =>
     this.setState({ result: 'cancelled', confirm_open: false })
+
   showConfirm = () => this.setState({ cofirm_open: true })
 
   show = dimmer => () => this.setState({ dimmer, open: true })
+
   close = () => this.setState({ open: false })
 
   handleSubmit = e => {
-    let { id, first_name, last_name, username, location, bio } = this.state
-    console.log(first_name)
-    let attributes = { first_name, last_name, username, location, bio }
+    let {
+      id,
+      profile_pic,
+      first_name,
+      last_name,
+      username,
+      location,
+      bio,
+      soundcloud_url
+    } = this.state
+    let attributes = {
+      profile_pic,
+      first_name,
+      last_name,
+      username,
+      location,
+      bio,
+      soundcloud_url
+    }
     e.preventDefault()
     this.props.updateProfile(1, attributes)
+    this.close()
+  }
+
+  handleSaveButton = e => {
+    this.setState({ save_disabled: false })
   }
 
   handleDelete = e => {
     e.preventDefault()
     this.props.destroyUser(1)
+    this.close()
   }
 
   render() {
@@ -73,7 +102,8 @@ class ProfileModal extends Component {
       location,
       profile_pic,
       username,
-      bio
+      bio,
+      soundcloud_url
     } = this.props.user
 
     const { confirm_open, open, dimmer } = this.state
@@ -90,14 +120,30 @@ class ProfileModal extends Component {
           open={open}
           onClose={this.close}>
           <Modal.Content image>
-            <Form style={{ width: '45%' }} basic onSubmit={this.handleSubmit}>
+            <Form style={{ width: '45%' }} onSubmit={this.handleSubmit}>
               <Image centered rounded wrapped size="small" src={profile_pic} />
               <br />
               <br />
               <Form.Group>
                 <Form.Field
                   onChange={e => {
-                    this.setState({ first_name: e.target.value })
+                    this.setState({
+                      profile_pic: e.target.value,
+                      save_disabled: false
+                    })
+                  }}
+                  defaultValue={profile_pic}
+                  control={Input}
+                  placeholder="Profile Pic URL"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Field
+                  onChange={e => {
+                    this.setState({
+                      first_name: e.target.value,
+                      save_disabled: false
+                    })
                   }}
                   defaultValue={first_name}
                   control={Input}
@@ -107,7 +153,10 @@ class ProfileModal extends Component {
               <Form.Group>
                 <Form.Field
                   onChange={e => {
-                    this.setState({ last_name: e.target.value })
+                    this.setState({
+                      last_name: e.target.value,
+                      save_disabled: false
+                    })
                   }}
                   control={Input}
                   defaultValue={last_name}
@@ -117,7 +166,10 @@ class ProfileModal extends Component {
               <Form.Group>
                 <Form.Field
                   onChange={e => {
-                    this.setState({ username: e.target.value })
+                    this.setState({
+                      username: e.target.value,
+                      save_disabled: false
+                    })
                   }}
                   control={Input}
                   defaultValue={username}
@@ -127,7 +179,10 @@ class ProfileModal extends Component {
               <Form.Group>
                 <Form.Field
                   onChange={e => {
-                    this.setState({ location: e.target.value })
+                    this.setState({
+                      location: e.target.value,
+                      save_disabled: false
+                    })
                   }}
                   defaultValue={location}
                   control={Input}
@@ -137,29 +192,69 @@ class ProfileModal extends Component {
               <Form.Group>
                 <Form.Field
                   onChange={e => {
-                    this.setState({ bio: e.target.value })
+                    this.setState({
+                      bio: e.target.value,
+                      save_disabled: false
+                    })
                   }}
                   defaultValue={bio}
                   control={Input}
                   placeholder="Bio"
                 />
               </Form.Group>
-              <Form.Field positive type="submit" control={Button}>
+              <Form.Group>
+                <Form.Field
+                  onChange={e => {
+                    this.setState({
+                      soundcloud_url: e.target.value,
+                      save_disabled: false
+                    })
+                  }}
+                  defaultValue={soundcloud_url}
+                  control={Input}
+                  placeholder="Soundcloud URL"
+                />
+              </Form.Group>
+              <Form.Field
+                disabled={this.state.save_disabled}
+                positive
+                type="submit"
+                control={Button}>
+                <Icon name="save" />
                 Save Changes
               </Form.Field>
-              <Button negative onClick={this.handleDelete}>
-                Delete Profile
-              </Button>
-              <Button.Group vertical>
-                <Button icon="x" content="Close" onClick={this.close} />
-              </Button.Group>
+
+              <Button
+                primary
+                icon="x"
+                content="Cancel Changes"
+                onClick={this.close}
+              />
             </Form>
+
+            <Button.Group
+              style={{ width: '35%' }}
+              floated="left"
+              compact
+              widths={16}
+              vertical>
+              <Button
+                animated
+                negative
+                onClick={e => {
+                  this.setState({ delete_disabled: false })
+                }}>
+                <Button.Content visible>Delete Profile</Button.Content>
+                <Button.Content hidden>Are You Sure?</Button.Content>
+              </Button>
+              <Button
+                disabled={this.state.delete_disabled}
+                negative
+                onClick={this.handleDelete}>
+                Confirm Delete
+              </Button>
+            </Button.Group>
           </Modal.Content>
-          {/* <Confirm
-            open={confirm_open}
-            onCancel={this.handleCancel}
-            onConfirm={this.handleDelete}
-          /> */}
         </Modal>
       </div>
     )

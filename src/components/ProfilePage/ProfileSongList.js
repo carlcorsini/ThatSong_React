@@ -91,8 +91,12 @@ class ProfileSongList extends Component {
             ({ id, title, artist, timestamp, url, notes, created_at }) => (
               <Table.Row key={id}>
                 <Table.Cell style={{ textAlign: 'center' }}>{title}</Table.Cell>
-                <Table.Cell style={{ textAlign: 'center' }}>
-                  {artist}
+                <Table.Cell selectable style={{ textAlign: 'center' }}>
+                  <a
+                    target="_blank"
+                    href={`https://soundcloud.com/${url.split('/')[1]}`}>
+                    {artist}
+                  </a>
                 </Table.Cell>
                 <Table.Cell style={{ textAlign: 'center' }}>
                   {timestamp}
