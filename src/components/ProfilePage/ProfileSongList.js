@@ -20,13 +20,13 @@ class ProfileSongList extends Component {
 
   handleSort = clickedColumn => () => {
     const { column, direction, data } = this.state
-
     if (column !== clickedColumn) {
       this.setState({
         column: clickedColumn,
         data: _.sortBy(data, [clickedColumn]),
         direction: 'ascending'
       })
+      return
     }
 
     this.setState({
@@ -125,7 +125,6 @@ class ProfileSongList extends Component {
   }
 }
 const mapStateToProps = ({ auth, filterSongs }) => {
-  console.log(auth)
   if (auth.user.userSongs) {
     return {
       data: auth.user.userSongs.filter(

@@ -17,12 +17,31 @@ import {
 class ProfileModal extends Component {
   state = {
     confirm_open: false,
-    open: false,
-    first_name: '',
-    last_name: '',
-    username: '',
-    location: '',
-    bio: ''
+    open: false
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user !== this.props.user) {
+      let {
+        id,
+        first_name,
+        last_name,
+        location,
+        profile_pic,
+        username,
+        bio
+      } = this.props.user
+
+      this.setState({
+        id,
+        first_name,
+        last_name,
+        location,
+        profile_pic,
+        username,
+        bio
+      })
+    }
   }
 
   handleConfirm = () =>
@@ -35,7 +54,8 @@ class ProfileModal extends Component {
   close = () => this.setState({ open: false })
 
   handleSubmit = e => {
-    let { first_name, last_name, username, location, bio } = this.state
+    let { id, first_name, last_name, username, location, bio } = this.state
+    console.log(first_name)
     let attributes = { first_name, last_name, username, location, bio }
     e.preventDefault()
     this.props.updateProfile(1, attributes)
@@ -127,17 +147,14 @@ class ProfileModal extends Component {
               <Form.Field positive type="submit" control={Button}>
                 Save Changes
               </Form.Field>
-              <Button.Group basic vertical>
-                <Button
-                  negative
-                  icon="x"
-                  content="Close"
-                  onClick={this.close}
-                />
+              <Button negative onClick={this.handleDelete}>
+                Delete Profile
+              </Button>
+              <Button.Group vertical>
+                <Button icon="x" content="Close" onClick={this.close} />
               </Button.Group>
             </Form>
           </Modal.Content>
-          <Button onClick={this.handleDelete}>Delete Profile</Button>
           {/* <Confirm
             open={confirm_open}
             onCancel={this.handleCancel}
