@@ -27,6 +27,8 @@ class SongList extends Component {
         data: _.sortBy(data, [clickedColumn]),
         direction: 'ascending'
       })
+
+      return
     }
 
     this.setState({
@@ -35,7 +37,6 @@ class SongList extends Component {
     })
   }
   render() {
-    console.log('will is chill')
     const { column, direction, data } = this.state
 
     return (
@@ -92,8 +93,12 @@ class SongList extends Component {
             ({ id, title, artist, timestamp, url, username, created_at }) => (
               <Table.Row key={id}>
                 <Table.Cell style={{ textAlign: 'center' }}>{title}</Table.Cell>
-                <Table.Cell style={{ textAlign: 'center' }}>
-                  {artist}
+                <Table.Cell selectable style={{ textAlign: 'center' }}>
+                  <a
+                    target="_blank"
+                    href={`https://soundcloud.com/${url.split('/')[1]}`}>
+                    {artist}
+                  </a>
                 </Table.Cell>
                 <Table.Cell style={{ textAlign: 'center' }}>
                   {timestamp}

@@ -22,6 +22,7 @@ class FooterComponent extends Component {
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item
+            target="_blank"
             style={{ textDecoration: 'none' }}
             href="https://github.com/carlcorsini/thatSong">
             <Icon name="github" />
