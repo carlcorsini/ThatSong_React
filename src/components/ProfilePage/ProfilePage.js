@@ -24,11 +24,12 @@ class ProfilePage extends Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column centered>
+            <Grid.Column>
               <Container
                 style={{
                   marginTop: '-1em',
-                  minHeight: '40em',
+                  marginBottom: '5em',
+                  minHeight: '35em',
                   boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
                 }}>
                 <ProfileSongList />

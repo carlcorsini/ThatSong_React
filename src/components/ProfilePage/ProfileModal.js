@@ -137,12 +137,12 @@ class ProfileModal extends Component {
               </Button.Group>
             </Form>
           </Modal.Content>
-          <Button onClick={this.showConfirm}>Delete Profile</Button>
-          <Confirm
+          <Button onClick={this.handleDelete}>Delete Profile</Button>
+          {/* <Confirm
             open={confirm_open}
             onCancel={this.handleCancel}
             onConfirm={this.handleDelete}
-          />
+          /> */}
         </Modal>
       </div>
     )

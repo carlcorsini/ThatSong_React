@@ -49,6 +49,12 @@ class ProfileSongList extends Component {
             </Table.HeaderCell>
             <Table.HeaderCell
               style={{ textAlign: 'center' }}
+              sorted={column === 'artist' ? direction : null}
+              onClick={this.handleSort('artist')}>
+              Artist
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              style={{ textAlign: 'center' }}
               sorted={column === 'timestamp' ? direction : null}
               onClick={this.handleSort('timestamp')}>
               Timestamp
@@ -69,7 +75,7 @@ class ProfileSongList extends Component {
               style={{ textAlign: 'center' }}
               sorted={column === 'notes' ? direction : null}
               onClick={this.handleSort('notes')}>
-              Notes
+              Note
             </Table.HeaderCell>
             <Table.HeaderCell
               style={{ textAlign: 'center' }}
@@ -80,43 +86,54 @@ class ProfileSongList extends Component {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {_.map(data, ({ id, title, timestamp, url, notes, created_at }) => (
-            <Table.Row key={id}>
-              <Table.Cell style={{ textAlign: 'center' }}>{title}</Table.Cell>
-              <Table.Cell style={{ textAlign: 'center' }}>
-                {timestamp}
-              </Table.Cell>
-              <Table.Cell style={{ textAlign: 'center' }} selectable>
-                <a
-                  target="_blank"
-                  href={`https://soundcloud.com${url}#t=${timestamp}`}>
-                  <Icon size="big" fitted name="soundcloud" />
-                </a>
-              </Table.Cell>
-              <Table.Cell
-                style={{ textAlign: 'center', cursor: 'pointer' }}
-                selectable>
-                <CopyToClipboard
-                  text={`https://soundcloud.com${url}#t=${timestamp}`}>
-                  <Icon fitted size="big" name="clipboard" />
-                </CopyToClipboard>
-              </Table.Cell>
-              <Table.Cell style={{ textAlign: 'center' }}>{notes}</Table.Cell>
-              <Table.Cell style={{ textAlign: 'center' }}>
-                <Moment fromNow>{created_at}</Moment>
-              </Table.Cell>
-            </Table.Row>
-          ))}
+          {_.map(
+            data,
+            ({ id, title, artist, timestamp, url, notes, created_at }) => (
+              <Table.Row key={id}>
+                <Table.Cell style={{ textAlign: 'center' }}>{title}</Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }}>
+                  {artist}
+                </Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }}>
+                  {timestamp}
+                </Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }} selectable>
+                  <a
+                    target="_blank"
+                    href={`https://soundcloud.com${url}#t=${timestamp}`}>
+                    <Icon size="big" fitted name="soundcloud" />
+                  </a>
+                </Table.Cell>
+                <Table.Cell
+                  style={{ textAlign: 'center', cursor: 'pointer' }}
+                  selectable>
+                  <CopyToClipboard
+                    text={`https://soundcloud.com${url}#t=${timestamp}`}>
+                    <Icon fitted size="big" name="clipboard" />
+                  </CopyToClipboard>
+                </Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }}>{notes}</Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }}>
+                  <Moment fromNow>{created_at}</Moment>
+                </Table.Cell>
+              </Table.Row>
+            )
+          )}
         </Table.Body>
       </Table>
     )
   }
 }
-const mapStateToProps = ({ songs, filterSongs }) => {
-  return {
-    data: songs.data.filter(song =>
-      song.title.toLowerCase().includes(filterSongs.filterSongs)
-    )
+const mapStateToProps = ({ auth, filterSongs }) => {
+  console.log(auth)
+  if (auth.user.userSongs) {
+    return {
+      data: auth.user.userSongs.filter(
+        song =>
+          song.title.toLowerCase().includes(filterSongs.filterSongs) ||
+          song.artist.toLowerCase().includes(filterSongs.filterSongs)
+      )
+    }
   }
 }
 

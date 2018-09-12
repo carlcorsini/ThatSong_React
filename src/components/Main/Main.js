@@ -8,7 +8,7 @@ class Main extends Component {
     return (
       <Container>
         <Grid stackable>
-          <Grid.Row columns={2} collapsable>
+          <Grid.Row columns={2}>
             <Grid.Column />
             <Grid.Column>
               <Container
@@ -23,7 +23,8 @@ class Main extends Component {
             <Container
               style={{
                 minHeight: '45em',
-                boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+                boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)',
+                marginBottom: '5em'
               }}>
               <SongList />
             </Container>

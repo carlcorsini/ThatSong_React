@@ -32,7 +32,7 @@ export const userLogin = (credentials, history) => {
         type: USER_LOGIN_SUCCESS,
         payload: { user, token }
       })
-      history.push(`/profile`, user)
+      // history.push(`/profile`, user)
       return { token, user }
     } catch (err) {
       dispatch({
@@ -43,11 +43,12 @@ export const userLogin = (credentials, history) => {
   }
 }
 
-export const userLogout = () => {
+export const userLogout = history => {
   return async dispatch => {
     try {
       localStorage.removeItem('token')
       dispatch({ type: 'USER_LOGOUT' })
+      history.push(`/that`)
     } catch (error) {}
   }
 }

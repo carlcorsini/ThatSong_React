@@ -10,11 +10,12 @@ import './Navbar.css'
 class NavbarComponent extends Component {
   handleLogout = e => {
     e.preventDefault()
-    this.props.userLogout()
+    this.props.userLogout(this.props.history)
   }
   render() {
     return (
       <Menu
+        id="tippy-top"
         style={{
           boxShadow: '1px 1px 10px 0.5px rgba(30, 31, 38, 0.58)'
         }}

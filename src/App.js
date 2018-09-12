@@ -5,6 +5,7 @@ import './App.css'
 import Main from './components/Main/Main'
 import Navbar from './components/Navbar/Navbar'
 import ProfilePage from './components/ProfilePage/ProfilePage'
+import Footer from './components/Footer/Footer'
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
             <Route exact path="/" component={() => <Redirect to="/that" />} />
             <Route path="/that" component={Main} />
             <Route path="/profile" component={ProfilePage} />
+            <Route path="/" component={Footer} />
           </div>
         </Router>
       </div>

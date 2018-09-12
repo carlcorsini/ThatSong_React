@@ -20,7 +20,7 @@ class FilterSongs extends Component {
                   type="text"
                   name="filter-songs"
                   id="filter-field"
-                  placeholder="filter by track title"
+                  placeholder="filter by title or artist"
                 />
               </Form>
             </Segment>
