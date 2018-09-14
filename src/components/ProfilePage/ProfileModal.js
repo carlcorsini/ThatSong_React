@@ -3,20 +3,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { updateProfile } from '../../redux/actions/updateUser'
 import { destroyUser } from '../../redux/actions/deleteUser'
-import {
-  Button,
-  Header,
-  Image,
-  Modal,
-  Form,
-  Input,
-  TextArea,
-  Icon
-} from 'semantic-ui-react'
+import { Button, Image, Modal, Form, Input, Icon } from 'semantic-ui-react'
 
 class ProfileModal extends Component {
   state = {
-    confirm_open: false,
     open: false,
     save_disabled: true,
     delete_disabled: true
@@ -47,14 +37,6 @@ class ProfileModal extends Component {
       })
     }
   }
-
-  handleConfirm = () =>
-    this.setState({ result: 'confirmed', confirm_open: false })
-
-  handleCancel = () =>
-    this.setState({ result: 'cancelled', confirm_open: false })
-
-  showConfirm = () => this.setState({ cofirm_open: true })
 
   show = dimmer => () => this.setState({ dimmer, open: true })
 
@@ -106,7 +88,7 @@ class ProfileModal extends Component {
       soundcloud_url
     } = this.props.user
 
-    const { confirm_open, open, dimmer } = this.state
+    const { open, dimmer } = this.state
     return (
       <div>
         <Button size="mini" basic secondary onClick={this.show('blurring')}>

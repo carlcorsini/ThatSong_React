@@ -48,7 +48,7 @@ class SignupModal extends Component {
         username,
         password
       }
-      console.log(this.props, 'props in signup modal!!!!!!')
+
       this.props.userSignup(newUser, this.props.history)
     }
   }
@@ -121,8 +121,8 @@ class SignupModal extends Component {
                 />
               </Form.Group>
               <div className="ui pointing below basic label">
-                Password must contain at least one number and one uppercase and
-                lowercase letter, and at least 8 or more characters.
+                Password must contain at least one number, one uppercase letter,
+                one lowercase letter, and at least 8 or more characters.
               </div>
               <Form.Group widths="equal">
                 <Form.Input
@@ -148,19 +148,29 @@ class SignupModal extends Component {
                   }
                 />
               </Form.Group>
-              <Button content="Sign Up" inverted color="green" type="submit" />
-              <Button
-                inverted
-                color="red"
-                content="Close"
-                onClick={this.close}
-              />
+              <Button.Group horizontal>
+                <Button
+                  inverted
+                  color="red"
+                  content="Close"
+                  onClick={this.close}
+                />
+                <Form.Field
+                  disabled={this.state.save_disabled}
+                  inverted
+                  positive
+                  color="green"
+                  type="submit"
+                  control={Button}>
+                  Sign Up
+                </Form.Field>
+              </Button.Group>
               {!this.state.isPasswordStrong ? (
                 <Message
                   color="red"
                   inverted
                   warning
-                  header="Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters."
+                  header="Password must contain at least one number, one uppercase letter, one lowercase letter, and at least 8 or more characters."
                 />
               ) : null}
               {!this.state.isValid ? (
@@ -183,7 +193,6 @@ class SignupModal extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     showSignupSuccess: state.auth.showSignupSuccess,
     open: state.auth.open

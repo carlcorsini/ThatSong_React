@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LoginModal from './LoginModal'
 import SignupModal from './SignupModal'
-import { withRouter } from 'react-router'
 import './Navbar.css'
 class NavbarComponent extends Component {
   handleLogout = e => {
@@ -58,8 +57,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state, props) {
-  console.log(state, props, 'state and props in map state in navbar')
-  const { auth, history, location } = state
+  const { auth, history } = state
   return { auth }
 }
 

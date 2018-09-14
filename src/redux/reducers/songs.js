@@ -9,7 +9,6 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_SONGS_SUCCESS:
-      console.log(payload)
       return { ...state, data: payload }
     case FETCH_SONGS_FAILED:
       return payload
