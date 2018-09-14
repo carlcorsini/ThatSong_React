@@ -32,6 +32,9 @@ class NavbarComponent extends Component {
               <Icon name="user" />
               {this.props.auth.user.username}
             </Menu.Item>
+            <Menu.Item style={{ textDecoration: 'none' }} href="/admin">
+              Admin
+            </Menu.Item>
             <Menu.Item
               style={{ textDecoration: 'none' }}
               to="/"
