@@ -1,0 +1,9 @@
+@media screen and (min-width: 768px) {
+  .filter-input {
+    margin-top: 13.5em;
+  }
+  .admin-header {
+    margin-top: 3em;
+    margin-bottom: -10em;
+  }
+}
