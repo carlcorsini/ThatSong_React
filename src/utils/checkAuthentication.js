@@ -20,7 +20,7 @@ export default async function checkAuthentication() {
     }
 
     const user = await getUser(user_id)
-    console.log(user)
+
     return { user, token }
   } catch (error) {
     console.error(error) // eslint-disable-line no-console

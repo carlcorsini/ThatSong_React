@@ -83,6 +83,9 @@ class ProfileSongList extends Component {
               onClick={this.handleSort('created_at')}>
               Created
             </Table.HeaderCell>
+            <Table.HeaderCell style={{ textAlign: 'center' }}>
+              Delete
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -120,6 +123,9 @@ class ProfileSongList extends Component {
                 <Table.Cell style={{ textAlign: 'center' }}>
                   <Moment fromNow>{created_at}</Moment>
                 </Table.Cell>
+                <Table.Cell style={{ textAlign: 'center' }}>
+                  <Icon name="x" />
+                </Table.Cell>
               </Table.Row>
             )
           )}
@@ -137,6 +143,8 @@ const mapStateToProps = ({ auth, filterSongs }) => {
           song.artist.toLowerCase().includes(filterSongs.filterSongs)
       )
     }
+  } else {
+    return {}
   }
 }
 

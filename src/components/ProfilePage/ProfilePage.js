@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Container, Tab, Grid, Header } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
 import TopSection from './TopSection/TopSection'
 import ProfileSongList from './ProfileSongList'
 import FilterSongs from '../Main/FilterSongs'

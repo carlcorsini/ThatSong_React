@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Moment from 'react-moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { connect } from 'react-redux'
-import { Table, Button, Icon } from 'semantic-ui-react'
+import { Table, Icon } from 'semantic-ui-react'
 
 class SongList extends Component {
   state = {

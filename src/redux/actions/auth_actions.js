@@ -54,7 +54,6 @@ export const userLogout = history => {
 }
 
 export const userSignup = (attributes, history) => {
-  console.log(history)
   return async (dispatch, getState) => {
     try {
       let [user] = await createUser(attributes)
@@ -96,7 +95,7 @@ export const getAuth = () => {
       const auth = await authentication()
 
       let { user } = await auth
-      console.log(user)
+
       dispatch({
         type: 'GET_AUTH_SUCCESS',
         payload: {
