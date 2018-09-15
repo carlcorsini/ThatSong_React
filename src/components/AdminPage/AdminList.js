@@ -5,7 +5,7 @@ import Moment from 'react-moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { connect } from 'react-redux'
 import { Table, Icon } from 'semantic-ui-react'
-import { updateProfile } from '../../redux/actions/updateUser'
+import { updateProfile } from '../../redux/actions/auth_actions'
 import { destroySong } from '../../redux/actions/songs'
 
 class AdminList extends Component {

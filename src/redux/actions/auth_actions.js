@@ -1,9 +1,7 @@
 import authenticate from '../../api/token'
 import createUser from '../../api/createUser'
 import checkAuthentication from '../../utils/checkAuthentication'
-
-export const ADD_FAVORITE_SUCCESS = 'ADD_FAVORITE_SUCCESS'
-export const ADD_FAVORITE_FAILED = 'ADD_FAVORITE_FAILED'
+import updateUser from '../../api/updateUser'
 
 export const USER_LOGIN_PENDING = 'USER_LOGIN_PENDING'
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
@@ -12,6 +10,8 @@ export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED'
 export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING'
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS'
 export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED'
+
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS'
 
 export const USER_LOGOUT = 'USER_LOGOUT'
 
@@ -107,6 +107,16 @@ export const getAuth = () => {
     } catch (error) {
       dispatch({ type: GET_AUTH_FAILED, payload: { error, isLoggedIn: false } })
     }
+  }
+}
+
+export const updateProfile = (id, attributes) => {
+  return async (dispatch, getState) => {
+    try {
+      const user = await updateUser(id, attributes)
+
+      dispatch({ type: UPDATE_USER_SUCCESS, payload: user[0] })
+    } catch (error) {}
   }
 }
 

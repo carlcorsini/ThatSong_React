@@ -39,8 +39,8 @@ class TopSection extends Component {
                   <Header size="large">{username || ''}</Header>
                   <Item.Extra>{`${first_name || ''} ${last_name ||
                     ''}`}</Item.Extra>
-                  <Item.Meta>{bio || ''}</Item.Meta>
                   <Item.Meta>{location || ''}</Item.Meta>
+                  <Item.Meta>{bio || ''}</Item.Meta>
                   <Item.Meta>
                     <a target="_blank" href={soundcloud_url}>
                       <Icon size="huge" name="soundcloud" link={true} />
