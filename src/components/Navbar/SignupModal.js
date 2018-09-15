@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import FadeIn from 'react-fade-in'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userSignup } from '../../redux/actions/auth_actions'
@@ -166,20 +167,24 @@ class SignupModal extends Component {
                 </Form.Field>
               </Button.Group>
               {!this.state.isPasswordStrong ? (
-                <Message
-                  color="red"
-                  inverted
-                  warning
-                  header="Password must contain at least one number, one uppercase letter, one lowercase letter, and at least 8 or more characters."
-                />
+                <FadeIn>
+                  <Message
+                    color="red"
+                    inverted
+                    warning
+                    header="Password must contain at least one number, one uppercase letter, one lowercase letter, and at least 8 or more characters."
+                  />
+                </FadeIn>
               ) : null}
               {!this.state.isValid ? (
-                <Message
-                  color="red"
-                  inverted
-                  warning
-                  header="passwords do not match"
-                />
+                <FadeIn>
+                  <Message
+                    color="red"
+                    inverted
+                    warning
+                    header="passwords do not match"
+                  />
+                </FadeIn>
               ) : null}
               {this.props.showSignupSuccess ? (
                 <Message color="green" success header="signup successful!" />

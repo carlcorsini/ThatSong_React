@@ -45,7 +45,9 @@ class NavbarComponent extends Component {
           </Menu.Menu>
         )}
         {this.props.auth.user.is_admin ? (
-          <Menu.Item style={{ textDecoration: 'none' }} href="/admin">
+          <Menu.Item
+            style={{ textDecoration: 'none', color: '#ff7700' }}
+            href="/admin">
             Admin
           </Menu.Item>
         ) : (

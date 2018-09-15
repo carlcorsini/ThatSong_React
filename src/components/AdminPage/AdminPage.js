@@ -25,8 +25,14 @@ class AdminPage extends Component {
                     backgroundColor: 'red'
                   }}>
                   <Segment.Group>
-                    <Segment style={{ backgroundColor: 'red' }} raised>
-                      <Header as="h1">Admin</Header>
+                    <Segment
+                      style={{
+                        backgroundColor: '#ff7700',
+                        boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)',
+                        border: '1px dashed'
+                      }}
+                      raised>
+                      <Header as="h1">Admin Page</Header>
                     </Segment>
                   </Segment.Group>
                 </Container>

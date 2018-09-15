@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { updateProfile } from '../../redux/actions/updateUser'
+import { updateProfile } from '../../redux/actions/auth_actions'
 import { destroyUser } from '../../redux/actions/deleteUser'
 import { Button, Image, Modal, Form, Input, Icon } from 'semantic-ui-react'
 
@@ -42,9 +42,8 @@ class ProfileModal extends Component {
 
   close = () => this.setState({ open: false })
 
-  handleSubmit = e => {
+  handleSubmit = id => {
     let {
-      id,
       profile_pic,
       first_name,
       last_name,
@@ -62,8 +61,8 @@ class ProfileModal extends Component {
       bio,
       soundcloud_url
     }
-    e.preventDefault()
-    this.props.updateProfile(1, attributes)
+
+    this.props.updateProfile(id, attributes)
     this.close()
   }
 
@@ -79,6 +78,7 @@ class ProfileModal extends Component {
 
   render() {
     let {
+      id,
       first_name,
       last_name,
       location,
@@ -102,7 +102,11 @@ class ProfileModal extends Component {
           open={open}
           onClose={this.close}>
           <Modal.Content image>
-            <Form style={{ width: '45%' }} onSubmit={this.handleSubmit}>
+            <Form
+              style={{ width: '45%' }}
+              onSubmit={e => {
+                this.handleSubmit(id)
+              }}>
               <Image centered rounded wrapped size="small" src={profile_pic} />
               <br />
               <br />
@@ -227,13 +231,15 @@ class ProfileModal extends Component {
                   this.setState({ delete_disabled: false })
                 }}>
                 <Button.Content visible>Delete Profile</Button.Content>
-                <Button.Content hidden>Are You Sure?</Button.Content>
+                <Button.Content hidden>
+                  Are You Sure? <br /> <br /> This action cannot be undone.
+                </Button.Content>
               </Button>
               <Button
                 disabled={this.state.delete_disabled}
                 negative
                 onClick={this.handleDelete}>
-                Confirm Delete
+                Confirm Delete Profile
               </Button>
             </Button.Group>
           </Modal.Content>

@@ -8,7 +8,7 @@ import {
   USER_LOGOUT,
   GET_AUTH_SUCCESS,
   GET_AUTH_FAILED,
-  ADD_FAVORITE_SUCCESS
+  UPDATE_USER_SUCCESS
 } from '../actions/auth_actions'
 
 let initialState = {
@@ -62,13 +62,10 @@ export default (state = initialState, action) => {
     case GET_AUTH_SUCCESS:
       return { ...state, user: action.payload.user, ...action.payload }
     case GET_AUTH_FAILED:
-      console.log(action, 'action in auth reducers')
-      console.log(state, 'state in auth reducers')
       return { ...state }
-    case ADD_FAVORITE_SUCCESS:
-      return {
-        ...state
-      }
+    case UPDATE_USER_SUCCESS:
+      console.log(action)
+      return { ...state, isLoggedIn: true, user: action.payload }
     default:
       return state
   }
