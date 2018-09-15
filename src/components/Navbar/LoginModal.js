@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import FadeIn from 'react-fade-in'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import selectAuthenticatedUser from '../../redux/selectors/selectAuthenticatedUser'
@@ -23,6 +24,7 @@ class LoginModal extends Component {
   }
 
   handleLogin = e => {
+    this.setState({ showLoginError: false })
     e.preventDefault()
     this.props.userLogin(
       {
@@ -92,11 +94,13 @@ class LoginModal extends Component {
                 </Form.Field>
               </Button.Group>
               {this.props.showLoginError ? (
-                <Message
-                  color="red"
-                  warning
-                  header="username or password is incorrect"
-                />
+                <FadeIn>
+                  <Message
+                    color="red"
+                    warning
+                    header="username or password is incorrect"
+                  />
+                </FadeIn>
               ) : null}
             </Form>
           </Modal.Content>
