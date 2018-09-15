@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import FadeIn from 'react-fade-in'
 import { Container, Grid } from 'semantic-ui-react'
 import SongList from './SongList'
 import FilterSongs from './FilterSongs'
@@ -11,23 +12,27 @@ class Main extends Component {
           <Grid.Row columns={2}>
             <Grid.Column />
             <Grid.Column>
-              <Container
-                style={{
-                  marginTop: '2em'
-                }}>
-                <FilterSongs />
-              </Container>
+              <FadeIn>
+                <Container
+                  style={{
+                    marginTop: '2em'
+                  }}>
+                  <FilterSongs />
+                </Container>
+              </FadeIn>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Container
-              style={{
-                minHeight: '45em',
-                boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)',
-                marginBottom: '5em'
-              }}>
-              <SongList />
-            </Container>
+            <FadeIn>
+              <Container
+                style={{
+                  minHeight: '45em',
+                  boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)',
+                  marginBottom: '5em'
+                }}>
+                <SongList />
+              </Container>
+            </FadeIn>
           </Grid.Row>
         </Grid>
       </Container>
