@@ -16,6 +16,7 @@ export default async function checkAuthentication() {
 
     if (exp * 1000 < Date.now()) {
       localStorage.removeItem('token')
+      localStorage.removeItem('isLoggedIn')
       return null
     }
 
@@ -25,6 +26,7 @@ export default async function checkAuthentication() {
   } catch (error) {
     console.error(error) // eslint-disable-line no-console
     localStorage.removeItem('token')
+    localStorage.removeItem('isLoggedIn')
     return null
   }
 }

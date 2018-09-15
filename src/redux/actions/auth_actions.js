@@ -25,6 +25,7 @@ export const userLogin = (credentials, history) => {
 
       const { token } = await user
       localStorage.setItem('token', token)
+      localStorage.setItem('isLoggedIn', true)
       // const { identity: user_id } = decode(token)
 
       dispatch({ type: USER_LOGIN_PENDING })
@@ -47,6 +48,7 @@ export const userLogout = history => {
   return async dispatch => {
     try {
       localStorage.removeItem('token')
+      localStorage.removeItem('isLoggedIn')
       dispatch({ type: 'USER_LOGOUT' })
       history.push(`/that`)
     } catch (error) {}
@@ -67,7 +69,7 @@ export const userSignup = (attributes, history) => {
 
       const { token } = await userWithToken
       localStorage.setItem('token', token)
-
+      localStorage.setItem('isLoggedIn', true)
       dispatch({
         type: USER_SIGNUP_SUCCESS,
         payload: {

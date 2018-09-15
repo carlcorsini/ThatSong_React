@@ -18,6 +18,10 @@ class SongList extends Component {
     }
   }
 
+  componentDidMount() {
+    this.setState({ data: this.props.data })
+  }
+
   handleSort = clickedColumn => () => {
     const { column, direction, data } = this.state
 

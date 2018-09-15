@@ -18,6 +18,10 @@ class ProfileSongList extends Component {
     }
   }
 
+  componentDidMount() {
+    this.setState({ data: this.props.data })
+  }
+
   handleSort = clickedColumn => () => {
     const { column, direction, data } = this.state
     if (column !== clickedColumn) {

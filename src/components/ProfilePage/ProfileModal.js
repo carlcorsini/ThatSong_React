@@ -112,6 +112,7 @@ class ProfileModal extends Component {
               <br />
               <Form.Group>
                 <Form.Field
+                  type="url"
                   onChange={e => {
                     this.setState({
                       profile_pic: e.target.value,
@@ -190,6 +191,7 @@ class ProfileModal extends Component {
               </Form.Group>
               <Form.Group>
                 <Form.Field
+                  type="url"
                   onChange={e => {
                     this.setState({
                       soundcloud_url: e.target.value,

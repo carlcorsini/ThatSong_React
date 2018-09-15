@@ -76,7 +76,7 @@ class LoginModal extends Component {
                   onChange={e => this.setState({ password: e.target.value })}
                 />
               </Form.Group>
-              <Button.Group horizontal>
+              <Button.Group>
                 <Button
                   type="button"
                   inverted
