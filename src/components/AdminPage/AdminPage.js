@@ -25,12 +25,8 @@ class AdminPage extends Component {
                     backgroundColor: 'red'
                   }}>
                   <Segment.Group>
-                    <Segment raised>
-                      <Item inverted>
-                        <Item.Content>
-                          <Item.Header as="h1">Admin</Item.Header>
-                        </Item.Content>
-                      </Item>
+                    <Segment style={{ backgroundColor: 'red' }} raised>
+                      <Header as="h1">Admin</Header>
                     </Segment>
                   </Segment.Group>
                 </Container>

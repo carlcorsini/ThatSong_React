@@ -32,12 +32,8 @@ class NavbarComponent extends Component {
               <Icon name="user" />
               {this.props.auth.user.username}
             </Menu.Item>
-            <Menu.Item style={{ textDecoration: 'none' }} href="/admin">
-              Admin
-            </Menu.Item>
             <Menu.Item
               style={{ textDecoration: 'none' }}
-              to="/"
               onClick={this.handleLogout}>
               Logout
             </Menu.Item>
@@ -47,6 +43,13 @@ class NavbarComponent extends Component {
             <SignupModal history={this.props.history} />
             <LoginModal history={this.props.history} />
           </Menu.Menu>
+        )}
+        {this.props.auth.user.is_admin ? (
+          <Menu.Item style={{ textDecoration: 'none' }} href="/admin">
+            Admin
+          </Menu.Item>
+        ) : (
+          <div />
         )}
       </Menu>
     )

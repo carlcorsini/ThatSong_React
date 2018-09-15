@@ -1,9 +1,12 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import Moment from 'react-moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { connect } from 'react-redux'
 import { Table, Icon } from 'semantic-ui-react'
+import { updateProfile } from '../../redux/actions/updateUser'
+import { destroySong } from '../../redux/actions/songs'
 
 class AdminList extends Component {
   state = {
@@ -36,6 +39,11 @@ class AdminList extends Component {
       direction: direction === 'ascending' ? 'descending' : 'ascending'
     })
   }
+
+  handleDelete = id => {
+    this.props.destroySong(id)
+  }
+
   render() {
     const { column, direction, data } = this.state
 
@@ -133,7 +141,12 @@ class AdminList extends Component {
                 <Table.Cell selectable style={{ textAlign: 'center' }}>
                   <Icon fitted name="edit" />
                 </Table.Cell>
-                <Table.Cell selectable style={{ textAlign: 'center' }}>
+                <Table.Cell
+                  onClick={e => {
+                    this.handleDelete(id)
+                  }}
+                  selectable
+                  style={{ textAlign: 'center', cursor: 'pointer' }}>
                   <Icon fitted name="x" />
                 </Table.Cell>
               </Table.Row>
@@ -155,4 +168,11 @@ const mapStateToProps = ({ songs, filterSongs }) => {
   }
 }
 
-export default connect(mapStateToProps, null)(AdminList)
+function mapDispatchToProps(dispatch) {
+  return {
+    updateProfile: bindActionCreators(updateProfile, dispatch),
+    destroySong: bindActionCreators(destroySong, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminList)

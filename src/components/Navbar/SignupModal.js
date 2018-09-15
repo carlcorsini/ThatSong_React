@@ -148,7 +148,7 @@ class SignupModal extends Component {
                   }
                 />
               </Form.Group>
-              <Button.Group horizontal>
+              <Button.Group>
                 <Button
                   inverted
                   color="red"

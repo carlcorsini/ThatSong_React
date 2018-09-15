@@ -1,7 +1,12 @@
+import deleteSong from '../../api/deleteSong'
+
 export const FETCH_SONGS_SUCCESS = 'FETCH_SONGS_SUCCESS'
 export const FETCH_SONGS_FAILED = 'FETCH_SONGS_FAILED'
 export const FILTER_SONG = 'FILTER_SONG'
+export const DELETE_SONG_SUCCESS = 'DELETE_SONG_SUCCESS'
+
 const BASE_URL = 'http://localhost:3000'
+
 export const fetchSongs = () => {
   return async dispatch => {
     try {
@@ -26,5 +31,15 @@ export const filterSongs = (str, type) => {
       type: FILTER_SONG,
       payload: { filterSongs: str, type }
     })
+  }
+}
+
+export const destroySong = id => {
+  return async dispatch => {
+    try {
+      const songs = await deleteSong(id)
+      console.log(songs)
+      dispatch({ type: DELETE_SONG_SUCCESS, payload: songs })
+    } catch (error) {}
   }
 }
