@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 import { Table, Icon } from 'semantic-ui-react'
 import { destroySong } from '../../redux/actions/songs'
 
-class ProfileSongList extends Component {
+class FriendSongList extends Component {
   state = {
     column: null,
     data: [],
@@ -46,6 +46,7 @@ class ProfileSongList extends Component {
   }
 
   render() {
+    console.log(this.props.history, 'history in friend song list')
     const { column, direction, data } = this.state
 
     return (
@@ -94,9 +95,6 @@ class ProfileSongList extends Component {
               onClick={this.handleSort('created_at')}>
               Created
             </Table.HeaderCell>
-            <Table.HeaderCell style={{ textAlign: 'center' }}>
-              Delete
-            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -134,14 +132,6 @@ class ProfileSongList extends Component {
                 <Table.Cell style={{ textAlign: 'center' }}>
                   <Moment fromNow>{created_at}</Moment>
                 </Table.Cell>
-                <Table.Cell
-                  selectable
-                  onClick={e => {
-                    this.handleDelete(id)
-                  }}
-                  style={{ textAlign: 'center', cursor: 'pointer' }}>
-                  <Icon name="x" />
-                </Table.Cell>
               </Table.Row>
             )
           )}
@@ -150,10 +140,10 @@ class ProfileSongList extends Component {
     )
   }
 }
-const mapStateToProps = ({ auth, filterSongs }) => {
-  if (auth.user.userSongs) {
+const mapStateToProps = ({ fetchFriend, filterSongs }) => {
+  if (fetchFriend.friend.userSongs) {
     return {
-      data: auth.user.userSongs.filter(
+      data: fetchFriend.friend.userSongs.filter(
         song =>
           song.title.toLowerCase().includes(filterSongs.filterSongs) ||
           song.artist.toLowerCase().includes(filterSongs.filterSongs)
@@ -170,4 +160,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileSongList)
+export default connect(mapStateToProps, mapDispatchToProps)(FriendSongList)

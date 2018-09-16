@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import FadeIn from 'react-fade-in'
 import { Container, Grid } from 'semantic-ui-react'
 import SongList from './SongList'
@@ -30,7 +31,7 @@ class Main extends Component {
                   boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)',
                   marginBottom: '5em'
                 }}>
-                <SongList />
+                <SongList history={this.props.history} />
               </Container>
             </FadeIn>
           </Grid.Row>

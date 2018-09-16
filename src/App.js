@@ -4,6 +4,7 @@ import Main from './components/Main/Main'
 import Navbar from './components/Navbar/Navbar'
 import ProfilePage from './components/ProfilePage/ProfilePage'
 import AdminPage from './components/AdminPage/AdminPage'
+import FriendPage from './components/FriendPage/FriendPage'
 import Footer from './components/Footer/Footer'
 import './App.css'
 
@@ -15,9 +16,10 @@ class App extends Component {
           <div>
             <Route path="/" component={Navbar} />
             <Route exact path="/" component={() => <Redirect to="/that" />} />
-            <Route path="/that" component={() => <Main />} />
-            <Route path="/profile" component={() => <ProfilePage />} />
-            <Route path="/admin" component={() => <AdminPage />} />
+            <Route exact path="/that" component={Main} />
+            <Route exact path="/profile" component={ProfilePage} />
+            <Route exact path="/admin" component={AdminPage} />
+            <Route exact path="/users/:id" component={FriendPage} />
             <Route path="/" component={Footer} />
           </div>
         </Router>

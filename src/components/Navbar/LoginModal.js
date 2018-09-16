@@ -96,6 +96,7 @@ class LoginModal extends Component {
               {this.props.showLoginError ? (
                 <FadeIn>
                   <Message
+                    floating
                     color="red"
                     warning
                     header="username or password is incorrect"
