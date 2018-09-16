@@ -1,9 +1,12 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Moment from 'react-moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { connect } from 'react-redux'
 import { Table, Icon } from 'semantic-ui-react'
+
+import { fetchFriend } from '../../redux/actions/fetchFriend'
 
 class SongList extends Component {
   state = {
@@ -40,7 +43,14 @@ class SongList extends Component {
       direction: direction === 'ascending' ? 'descending' : 'ascending'
     })
   }
+
+  handleClickFriend = id => {
+    console.log(this.props)
+    this.props.fetchFriend(id, this.props.history)
+  }
+
   render() {
+    console.log(this.props, 'props in songlist')
     const { column, direction, data } = this.state
 
     return (
@@ -94,7 +104,16 @@ class SongList extends Component {
         <Table.Body>
           {_.map(
             data,
-            ({ id, title, artist, timestamp, url, username, created_at }) => (
+            ({
+              id,
+              user_id,
+              title,
+              artist,
+              timestamp,
+              url,
+              username,
+              created_at
+            }) => (
               <Table.Row key={id}>
                 <Table.Cell style={{ textAlign: 'center' }}>{title}</Table.Cell>
                 <Table.Cell selectable style={{ textAlign: 'center' }}>
@@ -122,7 +141,12 @@ class SongList extends Component {
                     <Icon fitted size="big" name="clipboard" />
                   </CopyToClipboard>
                 </Table.Cell>
-                <Table.Cell style={{ textAlign: 'center' }}>
+                <Table.Cell
+                  selectable
+                  onClick={e => {
+                    this.handleClickFriend(user_id)
+                  }}
+                  style={{ textAlign: 'center', cursor: 'pointer' }}>
                   {username}
                 </Table.Cell>
                 <Table.Cell style={{ textAlign: 'center' }}>
@@ -137,7 +161,7 @@ class SongList extends Component {
   }
 }
 
-const mapStateToProps = ({ songs, filterSongs }) => {
+const mapStateToProps = ({ songs, filterSongs, history }) => {
   return {
     data: songs.data.filter(
       song =>
@@ -147,4 +171,7 @@ const mapStateToProps = ({ songs, filterSongs }) => {
   }
 }
 
-export default connect(mapStateToProps, null)(SongList)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ fetchFriend }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(SongList)

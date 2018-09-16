@@ -26,7 +26,6 @@ export default (state = initialState, action) => {
     case USER_LOGIN_PENDING:
       return { ...state, isLoading: true }
     case USER_LOGIN_SUCCESS:
-      console.log(action.payload)
       return {
         ...state,
         user: action.payload.user,
@@ -64,7 +63,6 @@ export default (state = initialState, action) => {
     case GET_AUTH_FAILED:
       return { ...state }
     case UPDATE_USER_SUCCESS:
-      console.log(action)
       return { ...state, isLoggedIn: true, user: action.payload }
     default:
       return state
