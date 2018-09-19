@@ -129,7 +129,7 @@ class AdminList extends Component {
                   selectable>
                   <CopyToClipboard
                     text={`https://soundcloud.com${url}#t=${timestamp}`}>
-                    <Icon fitted size="big" name="clipboard" />
+                    <Icon fitted size="large" name="copy" />
                   </CopyToClipboard>
                 </Table.Cell>
                 <Table.Cell style={{ textAlign: 'center' }}>

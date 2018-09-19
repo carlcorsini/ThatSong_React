@@ -13,8 +13,8 @@ import {
 } from 'semantic-ui-react'
 import './TopSection.css'
 
-import { followUser } from '../../../redux/actions/follow'
-import { unfollowUser } from '../../../redux/actions/unfollow'
+import { followUser } from '../../../redux/actions/auth_actions'
+import { unfollowUser } from '../../../redux/actions/auth_actions'
 
 class TopSection extends Component {
   handleFollow = (user_id, friend_id) => {
