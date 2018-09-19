@@ -21,7 +21,7 @@ class FriendPage extends Component {
             <Grid.Column>
               <FadeIn>
                 <Container style={{ marginTop: '1.3em', textAlign: 'left' }}>
-                  <TopSection user={this.props.friend} />
+                  <TopSection />
                 </Container>
               </FadeIn>
             </Grid.Column>

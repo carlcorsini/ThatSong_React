@@ -14,6 +14,7 @@ class NavbarComponent extends Component {
   render() {
     return (
       <Menu
+        size="large"
         id="tippy-top"
         style={{
           boxShadow: '1px 1px 10px 0.5px rgba(30, 31, 38, 0.58)'
@@ -22,13 +23,13 @@ class NavbarComponent extends Component {
         stackable
         inverted>
         <Menu.Item header>ThatSong</Menu.Item>
-        <Menu.Item style={{ textDecoration: 'none' }} href="/">
+        <Menu.Item name="home" href="/">
           <Icon name="home" />
           Home
         </Menu.Item>
         {this.props.auth.isLoggedIn ? (
           <Menu.Menu position="right">
-            <Menu.Item style={{ textDecoration: 'none' }} href="/profile">
+            <Menu.Item href="/profile">
               <Icon name="user" />
               {this.props.auth.user.username}
             </Menu.Item>

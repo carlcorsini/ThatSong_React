@@ -9,8 +9,8 @@ class Main extends Component {
   render() {
     return (
       <Container>
-        <Grid stackable>
-          <Grid.Row columns={2}>
+        <Grid columns="equal" stackable>
+          <Grid.Row>
             <Grid.Column />
             <Grid.Column>
               <FadeIn>
@@ -24,16 +24,18 @@ class Main extends Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <FadeIn>
-              <Container
-                style={{
-                  minHeight: '45em',
-                  boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)',
-                  marginBottom: '5em'
-                }}>
-                <SongList history={this.props.history} />
-              </Container>
-            </FadeIn>
+            <Grid.Column>
+              <FadeIn>
+                <Container
+                  style={{
+                    minHeight: '45em',
+                    boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)',
+                    marginBottom: '5em'
+                  }}>
+                  <SongList history={this.props.history} />
+                </Container>
+              </FadeIn>
+            </Grid.Column>
           </Grid.Row>
         </Grid>
       </Container>

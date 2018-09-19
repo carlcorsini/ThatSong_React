@@ -7,12 +7,13 @@ class FooterComponent extends Component {
   render() {
     return (
       <Menu
+        size="large"
         style={{
           boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
         }}
         className="foot-er"
         inverted>
-        <Menu.Item style={{ textDecoration: 'none' }} href="#tippy-top">
+        <Menu.Item style={{ textDecoration: 'none' }} href="/">
           <Icon name="home" />
           Home
         </Menu.Item>

@@ -2,6 +2,14 @@ import authenticate from '../../api/token'
 import createUser from '../../api/createUser'
 import checkAuthentication from '../../utils/checkAuthentication'
 import updateUser from '../../api/updateUser'
+import follow from '../../api/follow'
+import unfollow from '../../api/unfollow'
+
+export const FOLLOW_SUCCESS = 'FOLLOW_SUCCESS'
+export const FOLLOW_FAILED = 'FOLLOW_FAILED'
+
+export const UNFOLLOW_SUCCESS = 'UNFOLLOW_SUCCESS'
+export const UNFOLLOW_FAILED = 'UNFOLLOW_FAILED'
 
 export const USER_LOGIN_PENDING = 'USER_LOGIN_PENDING'
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
@@ -23,9 +31,10 @@ export const userLogin = (credentials, history) => {
     try {
       const user = await authenticate(credentials)
 
-      const { token } = await user
+      const { token, friends } = await user
       localStorage.setItem('token', token)
       localStorage.setItem('isLoggedIn', true)
+      localStorage.setItem('friends', JSON.stringify(friends))
       // const { identity: user_id } = decode(token)
 
       dispatch({ type: USER_LOGIN_PENDING })
@@ -49,6 +58,7 @@ export const userLogout = history => {
     try {
       localStorage.removeItem('token')
       localStorage.removeItem('isLoggedIn')
+      localStorage.removeItem('friends')
       dispatch({ type: 'USER_LOGOUT' })
       history.push(`/that`)
     } catch (error) {}
@@ -67,9 +77,11 @@ export const userSignup = (attributes, history) => {
         password
       })
 
-      const { token } = await userWithToken
+      const { token, friends } = await userWithToken
       localStorage.setItem('token', token)
       localStorage.setItem('isLoggedIn', true)
+
+      localStorage.setItem('friends', JSON.stringify(friends))
       dispatch({
         type: USER_SIGNUP_SUCCESS,
         payload: {
@@ -99,15 +111,17 @@ export const getAuth = () => {
       let { user } = await auth
 
       dispatch({
-        type: 'GET_AUTH_SUCCESS',
+        type: GET_AUTH_SUCCESS,
         payload: {
           user: user,
-          isLoggedIn: true,
           authenticatedUserId: user.id
         }
       })
     } catch (error) {
-      dispatch({ type: GET_AUTH_FAILED, payload: { error, isLoggedIn: false } })
+      dispatch({
+        type: GET_AUTH_FAILED,
+        payload: { error, isLoggedIn: false, user: {} }
+      })
     }
   }
 }
@@ -119,6 +133,42 @@ export const updateProfile = (id, attributes) => {
 
       dispatch({ type: UPDATE_USER_SUCCESS, payload: user[0] })
     } catch (error) {}
+  }
+}
+
+export const followUser = (user_id, friend_id) => {
+  return async dispatch => {
+    try {
+      let user = await follow(user_id, friend_id)
+      console.log(user)
+      dispatch({
+        type: FOLLOW_SUCCESS,
+        payload: user
+      })
+    } catch (err) {
+      dispatch({
+        type: FOLLOW_FAILED,
+        payload: err
+      })
+    }
+  }
+}
+
+export const unfollowUser = (user_id, friend_id) => {
+  return async dispatch => {
+    try {
+      let user = await unfollow(user_id, friend_id)
+      console.log('user')
+      dispatch({
+        type: UNFOLLOW_SUCCESS,
+        payload: user
+      })
+    } catch (err) {
+      dispatch({
+        type: UNFOLLOW_FAILED,
+        payload: err
+      })
+    }
   }
 }
 
