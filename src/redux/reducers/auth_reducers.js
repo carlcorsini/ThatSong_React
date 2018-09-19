@@ -8,13 +8,16 @@ import {
   USER_LOGOUT,
   GET_AUTH_SUCCESS,
   GET_AUTH_FAILED,
-  UPDATE_USER_SUCCESS
+  UPDATE_USER_SUCCESS,
+  FOLLOW_SUCCESS,
+  UNFOLLOW_SUCCESS
 } from '../actions/auth_actions'
 
 let initialState = {
   isLoggedIn: false,
   isLoading: false,
   user: {},
+  friends: [],
   showLoginError: false,
   showSignupError: false,
   showSignupSuccess: false,
@@ -29,6 +32,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: action.payload.user,
+        friends: action.payload.user.friends,
         token: action.payload.token,
         isLoggedIn: true,
         isLoading: false
@@ -42,6 +46,7 @@ export default (state = initialState, action) => {
         ...state,
         open: false,
         user: action.payload.user,
+        friends: action.payload.user.friends,
         token: action.payload.token,
         isLoading: false,
         isLoggedIn: true,
@@ -59,11 +64,20 @@ export default (state = initialState, action) => {
         showSignupError: false
       }
     case GET_AUTH_SUCCESS:
-      return { ...state, user: action.payload.user, ...action.payload }
+      return {
+        ...state,
+        isLoggedIn: true,
+        user: action.payload.user,
+        friends: action.payload.user.friends
+      }
     case GET_AUTH_FAILED:
       return { ...state }
     case UPDATE_USER_SUCCESS:
       return { ...state, isLoggedIn: true, user: action.payload }
+    case FOLLOW_SUCCESS:
+      return { ...state, friends: action.payload }
+    case UNFOLLOW_SUCCESS:
+      return { ...state, friends: action.payload }
     default:
       return state
   }
