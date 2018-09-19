@@ -69,22 +69,13 @@ class SongList extends Component {
               onClick={this.handleSort('artist')}>
               Artist
             </Table.HeaderCell>
-            <Table.HeaderCell
-              style={{ textAlign: 'center' }}
-              sorted={column === 'timestamp' ? direction : null}
-              onClick={this.handleSort('timestamp')}>
+            <Table.HeaderCell style={{ textAlign: 'center' }}>
               Timestamp
             </Table.HeaderCell>
-            <Table.HeaderCell
-              style={{ textAlign: 'center' }}
-              sorted={column === 'source' ? direction : null}
-              onClick={this.handleSort('source')}>
+            <Table.HeaderCell style={{ textAlign: 'center' }}>
               Source
             </Table.HeaderCell>
-            <Table.HeaderCell
-              style={{ textAlign: 'center' }}
-              sorted={column === 'url' ? direction : null}
-              onClick={this.handleSort('url')}>
+            <Table.HeaderCell style={{ textAlign: 'center' }}>
               URL
             </Table.HeaderCell>
             <Table.HeaderCell
@@ -138,7 +129,7 @@ class SongList extends Component {
                   selectable>
                   <CopyToClipboard
                     text={`https://soundcloud.com${url}#t=${timestamp}`}>
-                    <Icon fitted size="big" name="clipboard" />
+                    <Icon fitted size="large" name="copy" />
                   </CopyToClipboard>
                 </Table.Cell>
                 <Table.Cell
@@ -166,7 +157,8 @@ const mapStateToProps = ({ songs, filterSongs, history }) => {
     data: songs.data.filter(
       song =>
         song.title.toLowerCase().includes(filterSongs.filterSongs) ||
-        song.artist.toLowerCase().includes(filterSongs.filterSongs)
+        song.artist.toLowerCase().includes(filterSongs.filterSongs) ||
+        song.username.toLowerCase().includes(filterSongs.filterSongs)
     )
   }
 }
