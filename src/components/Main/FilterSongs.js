@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Segment, Form } from 'semantic-ui-react'
+import { Segment, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { filterSongs } from '../../redux/actions/songs'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import FadeIn from 'react-fade-in'
-import { Container, Grid, Header, Item, Segment } from 'semantic-ui-react'
+import { Container, Grid, Header, Segment } from 'semantic-ui-react'
 import AdminTopSection from './AdminTopSection/AdminTopSection'
 import AdminList from './AdminList'
 import FilterSongs from '../Main/FilterSongs'

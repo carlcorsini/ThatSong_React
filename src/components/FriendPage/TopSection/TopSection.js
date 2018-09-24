@@ -41,7 +41,7 @@ class TopSection extends Component {
     let { id: user_id } = this.props.user
 
     let followers =
-      friends.length < 2 && friends.length != 0
+      friends.length < 2 && friends.length !== 0
         ? `${friends.length} Follower`
         : `${friends.length} Followers`
 
@@ -66,10 +66,10 @@ class TopSection extends Component {
                 <br />
                 <div>
                   {this.props.friends.find(f => {
-                    return f.id == id
+                    return f.id === id
                   }) ? (
                     <Button
-                      disabled={user_id == id ? true : false}
+                      disabled={user_id === id ? true : false}
                       onClick={e => {
                         this.handleUnfollow(user_id, id)
                       }}
@@ -78,7 +78,7 @@ class TopSection extends Component {
                     </Button>
                   ) : (
                     <Button
-                      disabled={user_id == id ? true : false}
+                      disabled={user_id === id ? true : false}
                       onClick={e => {
                         this.handleFollow(user_id, id)
                       }}
