@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { Container, Grid, Tab } from 'semantic-ui-react'
 import TopSection from './TopSection/TopSection'
 import ProfileSongList from './ProfileSongList'
+import FriendsList from './FriendsList'
 import FilterSongs from '../Main/FilterSongs'
 import './Profile.css'
 
@@ -20,7 +21,6 @@ class ProfilePage extends Component {
         render: () => (
           <Tab.Pane
             style={{
-              // background: 'none',
               boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
             }}
             attached={false}>
@@ -33,11 +33,10 @@ class ProfilePage extends Component {
         render: () => (
           <Tab.Pane
             style={{
-              // background: 'none',
               boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
             }}
             attached={false}>
-            <ProfileSongList />
+            <FriendsList history={this.props.history} />
           </Tab.Pane>
         )
       }
@@ -64,32 +63,18 @@ class ProfilePage extends Component {
           <Grid.Row>
             <Grid.Column>
               <FadeIn>
-                {/* <Container
-                  style={{
-                    marginTop: '-1em',
-                    marginBottom: '5em',
-                    minHeight: '35em'
-                    boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
-                  }}> */}
                 <Tab
                   style={{
-                    // backgroundColor: 'white',
                     marginTop: '-1em',
                     marginBottom: '5em',
                     minHeight: '35em'
-                    // boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
                   }}
-                  inverted
                   menu={{
-                    // backgroundColor: 'white',
                     compact: true,
-                    // inverted: true,
                     pointing: true
                   }}
                   panes={panes}
                 />
-                {/* <ProfileSongList /> */}
-                {/* </Container> */}
               </FadeIn>
             </Grid.Column>
           </Grid.Row>

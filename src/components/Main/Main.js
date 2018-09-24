@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import FadeIn from 'react-fade-in'
 import { Container, Grid } from 'semantic-ui-react'
 import SongList from './SongList'

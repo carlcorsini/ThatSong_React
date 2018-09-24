@@ -66,7 +66,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state, props) {
-  const { auth, history } = state
+  const { auth } = state
   return { auth }
 }
 
