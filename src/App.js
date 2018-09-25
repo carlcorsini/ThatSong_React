@@ -8,6 +8,7 @@ import FriendPage from './components/FriendPage/FriendPage'
 import Footer from './components/Footer/Footer'
 import LoginPage from './components/LoginSignup/LoginPage'
 import SignupPage from './components/LoginSignup/SignupPage'
+import AboutPage from './components/AboutPage/AboutPage'
 import './App.css'
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/profile" component={ProfilePage} />
+            <Route exact path="/about" component={AboutPage} />
             <Route exact path="/admin" component={AdminPage} />
             <Route exact path="/users/:id" component={FriendPage} />
             <Route path="/" component={Footer} />

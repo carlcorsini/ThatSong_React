@@ -26,6 +26,7 @@ class NavbarComponent extends Component {
           <Icon name="home" />
           Home
         </Menu.Item>
+        <Menu.Item href="/about">About</Menu.Item>
         {this.props.auth.isLoggedIn ? (
           <Menu.Menu position="right">
             <Menu.Item href="/profile">

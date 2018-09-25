@@ -63,17 +63,16 @@ class SignupPage extends Component {
     return (
       <Grid
         textAlign="center"
-        style={{ height: '90vh' }}
+        style={{ height: '94.5vh', margin: 0 }}
         verticalAlign="middle">
         <Grid.Column style={{ maxWidth: 450 }}>
           <Segment
             style={{
-              marginBottom: '5em',
               boxShadow: '1px 1px 10px 2px rgba(30, 31, 38, 0.58)'
             }}
             inverted>
             <Header as="h2" textAlign="center">
-              Sign-up For thatSong
+              Sign-up For ThatSong
             </Header>
             <Form success warning onSubmit={this.userSignup}>
               <Form.Input

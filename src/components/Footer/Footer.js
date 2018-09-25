@@ -9,7 +9,6 @@ class FooterComponent extends Component {
       <Menu
         size="mini"
         icon="labeled"
-        vertical
         compact
         style={{
           border: '0',
