@@ -35,7 +35,6 @@ export const userLogin = (credentials, history) => {
       localStorage.setItem('token', token)
       localStorage.setItem('isLoggedIn', true)
       localStorage.setItem('friends', JSON.stringify(friends))
-      // const { identity: user_id } = decode(token)
 
       dispatch({ type: USER_LOGIN_PENDING })
       dispatch({

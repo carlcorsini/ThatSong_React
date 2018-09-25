@@ -66,8 +66,7 @@ class ProfilePage extends Component {
                 <Tab
                   style={{
                     marginTop: '-1em',
-                    marginBottom: '5em',
-                    minHeight: '35em'
+                    marginBottom: '5em'
                   }}
                   menu={{
                     compact: true,

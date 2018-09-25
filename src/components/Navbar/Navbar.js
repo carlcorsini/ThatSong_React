@@ -3,8 +3,7 @@ import { Menu, Icon } from 'semantic-ui-react'
 import { userLogout } from '../../redux/actions/auth_actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import LoginModal from './LoginModal'
-import SignupModal from './SignupModal'
+
 import './Navbar.css'
 class NavbarComponent extends Component {
   handleLogout = e => {
@@ -41,8 +40,8 @@ class NavbarComponent extends Component {
           </Menu.Menu>
         ) : (
           <Menu.Menu position="right">
-            <SignupModal history={this.props.history} />
-            <LoginModal history={this.props.history} />
+            <Menu.Item href="/signup">Sign Up</Menu.Item>
+            <Menu.Item href="/login">Login</Menu.Item>
           </Menu.Menu>
         )}
         {this.props.auth.user.is_admin ? (
