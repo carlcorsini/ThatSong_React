@@ -45,7 +45,7 @@ class LoginPage extends Component {
     return (
       <Grid
         textAlign="center"
-        style={{ height: '90vh' }}
+        style={{ height: '90vh', margin: '0' }}
         verticalAlign="middle">
         <Grid.Column style={{ maxWidth: 450 }}>
           <Segment

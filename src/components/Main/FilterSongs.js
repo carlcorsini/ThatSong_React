@@ -14,11 +14,11 @@ class FilterSongs extends Component {
         <Form>
           <Form.Input
             icon="search"
-            onChange={e => this.props.filterSongs(e.target.value)}
+            onChange={e => this.props.filterSongs(e.target.value.toLowerCase())}
             type="text"
             name="filter-songs"
             id="filter-field"
-            placeholder="filter by title or artist"
+            placeholder="Filter"
           />
         </Form>
       </Segment>
