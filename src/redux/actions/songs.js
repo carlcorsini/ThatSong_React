@@ -5,7 +5,7 @@ export const FETCH_SONGS_FAILED = 'FETCH_SONGS_FAILED'
 export const FILTER_SONG = 'FILTER_SONG'
 export const DELETE_SONG_SUCCESS = 'DELETE_SONG_SUCCESS'
 
-const BASE_URL = 'http://that-song-back-end.herokuapp.com'
+const BASE_URL = 'https://that-song-back-end.herokuapp.com'
 
 export const fetchSongs = () => {
   return async dispatch => {
