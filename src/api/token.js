@@ -13,7 +13,6 @@ export default async function authenticate(credentials) {
     const body = await response.json()
     if (body.error) throw new Error(body.message)
     return body
-    // no try block????
   } catch (error) {
     if (error.message.startsWith('AuthenticationService.ERROR_')) throw error
     throw new Error('AuthenticationService.ERROR_UNEXPECTED')

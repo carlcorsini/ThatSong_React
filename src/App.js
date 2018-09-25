@@ -6,6 +6,8 @@ import ProfilePage from './components/ProfilePage/ProfilePage'
 import AdminPage from './components/AdminPage/AdminPage'
 import FriendPage from './components/FriendPage/FriendPage'
 import Footer from './components/Footer/Footer'
+import LoginPage from './components/LoginSignup/LoginPage'
+import SignupPage from './components/LoginSignup/SignupPage'
 import './App.css'
 
 class App extends Component {
@@ -17,6 +19,8 @@ class App extends Component {
             <Route path="/" component={Navbar} />
             <Route exact path="/" component={() => <Redirect to="/that" />} />
             <Route exact path="/that" component={Main} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/admin" component={AdminPage} />
             <Route exact path="/users/:id" component={FriendPage} />

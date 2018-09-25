@@ -1,3 +1,5 @@
 .foot-er {
-  margin-top: 4em;
+  left: 0;
+  bottom: 0;
+  position: fixed;
 }
