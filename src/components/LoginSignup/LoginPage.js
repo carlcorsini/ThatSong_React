@@ -42,14 +42,17 @@ class LoginPage extends Component {
   close = () => this.setState({ open: false })
 
   render() {
-    // const { open, dimmer } = this.state
     return (
       <Grid
         textAlign="center"
-        style={{ height: '100vh' }}
+        style={{ height: '90vh' }}
         verticalAlign="middle">
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Segment inverted>
+          <Segment
+            style={{
+              boxShadow: '1px 1px 10px 2px rgba(30, 31, 38, 0.58)'
+            }}
+            inverted>
             <Header as="h2" textAlign="center">
               Log-in to your account
             </Header>
