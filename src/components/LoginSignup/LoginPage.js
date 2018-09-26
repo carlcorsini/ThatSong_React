@@ -7,17 +7,13 @@ import { userLogin } from '../../redux/actions/auth_actions'
 import { userLogout } from '../../redux/actions/auth_actions'
 
 import {
-  Container,
   Grid,
-  Image,
   Segment,
   Button,
   Header,
-  Modal,
   Form,
   Input,
-  Message,
-  Menu
+  Message
 } from 'semantic-ui-react'
 
 class LoginPage extends Component {
@@ -38,8 +34,6 @@ class LoginPage extends Component {
       this.props.history
     )
   }
-  show = dimmer => () => this.setState({ dimmer, open: true })
-  close = () => this.setState({ open: false })
 
   render() {
     return (
@@ -56,25 +50,7 @@ class LoginPage extends Component {
             <Header as="h2" textAlign="center">
               Log-in to your account
             </Header>
-            {/* <Form size="large">
-              <Segment stacked>
-                <Form.Input
-                  fluid
-                  icon="user"
-                  iconPosition="left"
-                  placeholder="E-mail address"
-                />
-                <Form.Input
-                  fluid
-                  icon="lock"
-                  iconPosition="left"
-                  placeholder="Password"
-                  type="password"
-                />
 
-                <Button primary fluid size="large">
-                  Login
-                </Button> */}
             <Form warning onSubmit={this.handleLogin}>
               <Form.Input
                 icon="user"
@@ -82,7 +58,7 @@ class LoginPage extends Component {
                 style={{ textAlign: 'center' }}
                 type="username"
                 name="username"
-                placeholder="username"
+                placeholder="username or email"
                 onChange={e => this.setState({ username: e.target.value })}
               />
 
