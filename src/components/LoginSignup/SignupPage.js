@@ -2,22 +2,9 @@ import React, { Component } from 'react'
 import FadeIn from 'react-fade-in'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import selectAuthenticatedUser from '../../redux/selectors/selectAuthenticatedUser'
 import { userSignup } from '../../redux/actions/auth_actions'
 
-import {
-  Container,
-  Grid,
-  Image,
-  Segment,
-  Button,
-  Header,
-  Modal,
-  Form,
-  Input,
-  Message,
-  Menu
-} from 'semantic-ui-react'
+import { Grid, Segment, Button, Header, Form, Message } from 'semantic-ui-react'
 
 class SignupPage extends Component {
   state = {
