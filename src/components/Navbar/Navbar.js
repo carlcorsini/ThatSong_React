@@ -44,7 +44,7 @@ class NavbarComponent extends Component {
             <Menu.Item
               style={{ textDecoration: 'none' }}
               onClick={this.handleLogout}>
-              <Icon name="log out" />
+              <Icon name="sign out" />
               Logout
             </Menu.Item>
           </Menu.Menu>
