@@ -1,7 +1,6 @@
 import env from '../env'
 
 export default async function authenticate(credentials) {
-  console.log(credentials)
   try {
     const response = await fetch(`${env.default}/users/login`, {
       method: 'POST',
