@@ -17,84 +17,60 @@ class AboutPage extends Component {
         <br />
         <br />
         <Container text>
-          <Header style={{ fontSize: '3em' }} as="h1">
-            About ThatSong
-          </Header>
-        </Container>
-        <br />
-        <Container text>
+          <Segment
+            raised
+            id="projects"
+            style={{ padding: '6em 6em', border: '0' }}>
+            <Grid container stackable verticalAlign="middle">
+              <Grid.Row>
+                <Grid.Column width={8}>
+                  <Header as="h3" style={{ fontSize: '4em' }}>
+                    Step 1
+                  </Header>
+                  {/* <p style={{ fontSize: '2em' }}>Sign Up</p> */}
+                  <Button size="massive" inverted primary href="/signup">
+                    Sign Up
+                  </Button>
+                  <Header as="h3" style={{ fontSize: '4em' }}>
+                    Step 2
+                  </Header>
+                  <Button size="big" inverted primary href="/signup">
+                    Download Chrome Extension
+                  </Button>
+                </Grid.Column>
+                <Grid.Column floated="right" width={6}>
+                  <Header as="h3" style={{ fontSize: '4em' }}>
+                    Step 3
+                  </Header>
+                  <p style={{ fontSize: '1.33em' }}>Watch tutorial!</p>
+                  <Image
+                    href="https://beer-me-react.herokuapp.com"
+                    bordered
+                    rounded
+                    size="large"
+                    src="https://i.imgur.com/AWzT3w5.png"
+                  />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+          <br />
+          <br />
           <Container
             text
             style={{
               fontSize: '1.5em'
             }}
-            textAlign="left">
-            <p style={{ width: '95%' }}>
-              ThatSong is a Chrome Extension which enables users to log
-              timestamps from tracks on Soundcloud.
+            textAlign="center">
+            <p>
+              ThatSong is a platform which enables users to log timestamps from
+              tracks on Soundcloud.
             </p>
 
-            <p style={{ width: '95%' }}>
-              This site enables users to navigate their own saved tracks, other
-              users tracks, as well follow other users.
+            <p>
+              that-song.com enables users to browse and manage their saved
+              tracks, other users tracks, as well follow other users.
             </p>
-          </Container>
-          <Container style={{ marginTop: '2em', color: 'white' }}>
-            <Button.Group vertical>
-              <Button
-                inverted
-                primary
-                size="huge"
-                href="mailto:craigcorsini@gmail.com">
-                View Extension In Chrome Store
-              </Button>
-            </Button.Group>
-          </Container>
-          <br />
-
-          <Container style={{ marginTop: '3em', marginBottom: '3em' }}>
-            <Grid divided columns="equal" stackable>
-              <Grid.Row textAlign="center">
-                <Grid.Column
-                  style={{
-                    fontSize: '1.5em',
-                    paddingBottom: '2em',
-                    paddingTop: '2em'
-                  }}>
-                  <List>
-                    <List.Item>College Essays</List.Item>
-                    <List.Item>Theses</List.Item>
-                    <List.Item>White Papers</List.Item>
-                    <List.Item>Term Papers</List.Item>
-                  </List>
-                </Grid.Column>
-                <Grid.Column
-                  style={{
-                    fontSize: '1.5em',
-                    paddingBottom: '2em',
-                    paddingTop: '2em'
-                  }}>
-                  <List>
-                    <List.Item>Business Corespondence</List.Item>
-                    <List.Item>Feature Articles</List.Item>
-                    <List.Item>Marketing Copy</List.Item>
-                  </List>
-                </Grid.Column>
-                <Grid.Column
-                  style={{
-                    fontSize: '1.5em',
-                    paddingBottom: '2em',
-                    paddingTop: '2em'
-                  }}>
-                  <List>
-                    <List.Item>Fiction</List.Item>
-                    <List.Item>Creative Writing</List.Item>
-                    <List.Item>Cover Letters</List.Item>
-                    <List.Item>Resumes</List.Item>
-                  </List>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
           </Container>
         </Container>
         <br />

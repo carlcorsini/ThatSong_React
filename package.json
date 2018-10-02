@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "ajv": "^6.5.3",
+    "jsonwebtoken": "^8.3.0",
     "jwt-decode": "^2.2.0",
+    "jwt-verify": "0.0.2",
     "lodash": "^4.17.10",
     "lodash.isempty": "^4.4.0",
     "moment": "^2.22.2",

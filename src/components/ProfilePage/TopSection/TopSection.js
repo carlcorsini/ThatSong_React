@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { Container, Item, Header, Segment, Icon } from 'semantic-ui-react'
+import {
+  Container,
+  Item,
+  Header,
+  Segment,
+  Icon,
+  Button
+} from 'semantic-ui-react'
 import ProfileModal from '../ProfileModal'
 import './TopSection.css'
 class TopSection extends Component {
@@ -11,8 +18,13 @@ class TopSection extends Component {
       profile_pic,
       username,
       bio,
-      soundcloud_url
+      soundcloud_url,
+      userSongs
     } = this.props.user
+
+    const data =
+      'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(userSongs))
+
     return (
       <Container className="top-section" fluid>
         <Item.Group>
@@ -32,6 +44,14 @@ class TopSection extends Component {
                 <br />
                 <div>
                   <ProfileModal user={this.props.user} />
+                  <Button size="mini" basic secondary>
+                    <a
+                      style={{ color: 'black' }}
+                      href={`data: ${data}`}
+                      download={`${username}_songs.json`}>
+                      Download Song Data
+                    </a>
+                  </Button>
                 </div>
               </Segment>
               <Segment inverted>

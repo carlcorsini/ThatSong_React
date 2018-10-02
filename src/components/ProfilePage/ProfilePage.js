@@ -41,6 +41,7 @@ class ProfilePage extends Component {
         )
       }
     ]
+
     return localStorage.getItem('isLoggedIn') ? (
       <Container divided="vertically">
         <Grid stackable columns="equal">
