@@ -139,7 +139,7 @@ export const followUser = (user_id, friend_id) => {
   return async dispatch => {
     try {
       let user = await follow(user_id, friend_id)
-      console.log(user)
+
       dispatch({
         type: FOLLOW_SUCCESS,
         payload: user
@@ -157,7 +157,7 @@ export const unfollowUser = (user_id, friend_id) => {
   return async dispatch => {
     try {
       let user = await unfollow(user_id, friend_id)
-      console.log('user')
+
       dispatch({
         type: UNFOLLOW_SUCCESS,
         payload: user

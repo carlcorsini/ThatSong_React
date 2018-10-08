@@ -3,11 +3,10 @@ export const FETCH_FRIEND_SUCCESS = 'FETCH_FRIEND_SUCCESS'
 export const FETCH_FRIEND_FAILED = 'FETCH_FRIEND_FAILED'
 
 export const fetchFriend = (id, history) => {
-  console.log(history)
   return async dispatch => {
     try {
       let user = await getUser(id)
-      console.log('user')
+
       localStorage.setItem('friend', JSON.stringify(user))
       dispatch({
         type: FETCH_FRIEND_SUCCESS,

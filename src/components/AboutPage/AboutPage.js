@@ -6,9 +6,7 @@ import {
   Grid,
   Header,
   Image,
-  List,
-  Button,
-  Segment
+  Button
 } from 'semantic-ui-react'
 
 class AboutPage extends Component {

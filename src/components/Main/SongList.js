@@ -44,12 +44,10 @@ class SongList extends Component {
   }
 
   handleClickFriend = id => {
-    console.log(this.props)
     this.props.fetchFriend(id, this.props.history)
   }
 
   render() {
-    console.log(this.props, 'props in songlist')
     const { column, direction, data } = this.state
 
     return (
