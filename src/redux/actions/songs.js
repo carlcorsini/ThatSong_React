@@ -37,7 +37,7 @@ export const destroySong = id => {
   return async dispatch => {
     try {
       const songs = await deleteSong(id)
-      console.log(songs)
+
       dispatch({ type: DELETE_SONG_SUCCESS, payload: songs })
     } catch (error) {}
   }

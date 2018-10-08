@@ -23,13 +23,12 @@ class FriendsList extends Component {
   }
 
   handleClickFriend = id => {
-    console.log(this.props)
     this.props.fetchFriend(id, this.props.history)
   }
 
   render() {
     const { data } = this.state
-    console.log(data, 'friends data?')
+
     return (
       <Card.Group centered>
         {_.map(data, ({ id, profile_pic, username }) => (

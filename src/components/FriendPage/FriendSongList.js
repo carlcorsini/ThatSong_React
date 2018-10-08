@@ -46,7 +46,6 @@ class FriendSongList extends Component {
   }
 
   render() {
-    console.log(this.props.history, 'history in friend song list')
     const { column, direction, data } = this.state
 
     return (
