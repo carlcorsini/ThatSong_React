@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken'
-
 import { isEmpty } from '../utils/LangUtils'
 import getUser from '../api/getUser'
 
@@ -12,7 +11,7 @@ export default async function checkAuthentication() {
       return null
     }
 
-    const { identity: user_id, exp } = jwt.verify(token, 'secret')
+    const { identity: user_id, exp } = jwt.decode(token)
 
     if (exp * 1000 < Date.now()) {
       localStorage.removeItem('token')
