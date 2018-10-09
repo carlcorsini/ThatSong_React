@@ -4,6 +4,7 @@ import checkAuthentication from '../../utils/checkAuthentication'
 import updateUser from '../../api/updateUser'
 import follow from '../../api/follow'
 import unfollow from '../../api/unfollow'
+import getUser from '../../api/getUser'
 
 export const FOLLOW_SUCCESS = 'FOLLOW_SUCCESS'
 export const FOLLOW_FAILED = 'FOLLOW_FAILED'
@@ -25,6 +26,9 @@ export const USER_LOGOUT = 'USER_LOGOUT'
 
 export const GET_AUTH_SUCCESS = 'GET_AUTH_SUCCESS'
 export const GET_AUTH_FAILED = 'GET_AUTH_FAILED'
+
+export const FETCH_FRIEND_SUCCESS = 'FETCH_FRIEND_SUCCESS'
+export const FETCH_FRIEND_FAILED = 'FETCH_FRIEND_FAILED'
 
 export const userLogin = (credentials, history) => {
   return async dispatch => {
@@ -165,6 +169,26 @@ export const unfollowUser = (user_id, friend_id) => {
     } catch (err) {
       dispatch({
         type: UNFOLLOW_FAILED,
+        payload: err
+      })
+    }
+  }
+}
+
+export const fetchFriend = (id, history) => {
+  return async dispatch => {
+    try {
+      let user = await getUser(id)
+
+      localStorage.setItem('friend', JSON.stringify(user))
+      dispatch({
+        type: FETCH_FRIEND_SUCCESS,
+        payload: user
+      })
+      history.push(`/users/${id}`, user)
+    } catch (err) {
+      dispatch({
+        type: FETCH_FRIEND_FAILED,
         payload: err
       })
     }

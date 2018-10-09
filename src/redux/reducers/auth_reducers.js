@@ -10,18 +10,21 @@ import {
   GET_AUTH_FAILED,
   UPDATE_USER_SUCCESS,
   FOLLOW_SUCCESS,
-  UNFOLLOW_SUCCESS
+  UNFOLLOW_SUCCESS,
+  FETCH_FRIEND_SUCCESS
 } from '../actions/auth_actions'
 
 let initialState = {
   isLoggedIn: false,
   isLoading: false,
   user: {},
-  friends: [],
+  fetchFollowers: [],
+  fetchFollowing: [],
   showLoginError: false,
   showSignupError: false,
   showSignupSuccess: false,
-  open: true
+  open: true,
+  fetchFriend: ''
 }
 
 export default (state = initialState, action) => {
@@ -32,7 +35,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: action.payload.user,
-        friends: action.payload.user.friends,
+        followers: action.payload.user.followers,
+        following: action.payload.user.following,
         token: action.payload.token,
         isLoggedIn: true,
         isLoading: false
@@ -46,7 +50,8 @@ export default (state = initialState, action) => {
         ...state,
         open: false,
         user: action.payload.user,
-        friends: action.payload.user.friends,
+        followers: action.payload.user.followers,
+        following: action.payload.user.following,
         token: action.payload.token,
         isLoading: false,
         isLoggedIn: true,
@@ -68,16 +73,24 @@ export default (state = initialState, action) => {
         ...state,
         isLoggedIn: true,
         user: action.payload.user,
-        friends: action.payload.user.friends
+        followers: action.payload.user.followers,
+        following: action.payload.user.following
       }
     case GET_AUTH_FAILED:
       return { ...state }
     case UPDATE_USER_SUCCESS:
       return { ...state, isLoggedIn: true, user: action.payload }
     case FOLLOW_SUCCESS:
-      return { ...state, friends: action.payload }
+      return { ...state, fetchFollowers: action.payload }
     case UNFOLLOW_SUCCESS:
-      return { ...state, friends: action.payload }
+      return { ...state, fetchFollowers: action.payload }
+    case FETCH_FRIEND_SUCCESS:
+      return {
+        ...state,
+        fetchFriend: action.payload,
+        fetchFollowers: action.payload.followers,
+        fetchFollowing: action.payload.following
+      }
     default:
       return state
   }

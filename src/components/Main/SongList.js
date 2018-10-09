@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import Moment from 'react-moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Table, Icon } from 'semantic-ui-react'
-import { fetchFriend } from '../../redux/actions/fetchFriend'
+import { fetchFriend } from '../../redux/actions/auth_actions'
 
 class SongList extends Component {
   state = {

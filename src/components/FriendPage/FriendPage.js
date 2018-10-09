@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import FadeIn from 'react-fade-in'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Container, Grid } from 'semantic-ui-react'
+import { Container, Grid, Tab } from 'semantic-ui-react'
 import TopSection from './TopSection/TopSection'
 import FriendSongList from './FriendSongList'
+import FollowersList from './FollowersList'
+import FollowingList from './FollowingList'
 import FilterSongs from '../Main/FilterSongs'
 import './Friend.css'
 
@@ -14,6 +16,44 @@ class FriendPage extends Component {
   }
 
   render() {
+    const panes = [
+      {
+        menuItem: 'My Feed',
+        render: () => (
+          <Tab.Pane
+            style={{
+              boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+            }}
+            attached={false}>
+            <FriendSongList />
+          </Tab.Pane>
+        )
+      },
+      {
+        menuItem: 'Followers',
+        render: () => (
+          <Tab.Pane
+            style={{
+              boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+            }}
+            attached={false}>
+            <FollowersList history={this.props.history} />
+          </Tab.Pane>
+        )
+      },
+      {
+        menuItem: 'Following',
+        render: () => (
+          <Tab.Pane
+            style={{
+              boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+            }}
+            attached={false}>
+            <FollowingList history={this.props.history} />
+          </Tab.Pane>
+        )
+      }
+    ]
     return localStorage.getItem('isLoggedIn') ? (
       <Container divided="vertically">
         <Grid stackable columns="equal">
@@ -36,14 +76,17 @@ class FriendPage extends Component {
           <Grid.Row>
             <Grid.Column>
               <FadeIn>
-                <Container
+                <Tab
                   style={{
                     marginTop: '-1em',
-                    marginBottom: '5em',
-                    boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
-                  }}>
-                  <FriendSongList history={this.props.history} />
-                </Container>
+                    marginBottom: '5em'
+                  }}
+                  menu={{
+                    compact: true,
+                    pointing: true
+                  }}
+                  panes={panes}
+                />
               </FadeIn>
             </Grid.Column>
           </Grid.Row>
@@ -57,7 +100,7 @@ class FriendPage extends Component {
 
 const mapStateToProps = (state, props) => ({
   user: state.auth.user,
-  friend: state.fetchFriend.friend
+  friend: state.auth.fetchFriend
 })
 
 export default connect(mapStateToProps, null)(FriendPage)

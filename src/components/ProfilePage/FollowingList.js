@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Card, Image } from 'semantic-ui-react'
-import { fetchFriend } from '../../redux/actions/fetchFriend'
+import { fetchFriend } from '../../redux/actions/auth_actions'
 
-class FriendsList extends Component {
+class FollowingList extends Component {
   state = {
     column: null,
     data: [],
@@ -31,14 +31,14 @@ class FriendsList extends Component {
 
     return (
       <Card.Group centered>
-        {_.map(data, ({ id, profile_pic, username }) => (
+        {_.map(data, ({ id: following_id, profile_pic, username }) => (
           <Card
             onClick={e => {
-              this.handleClickFriend(id)
+              this.handleClickFriend(following_id)
             }}
             raised
-            key={id}>
-            <Image centered size="medium" src={profile_pic} />
+            key={following_id}>
+            <Image centered size="small" src={profile_pic} />
             <Card.Content>
               <Card.Header>{username}</Card.Header>
             </Card.Content>
@@ -51,7 +51,7 @@ class FriendsList extends Component {
 const mapStateToProps = ({ auth }) => {
   if (auth.user) {
     return {
-      data: auth.user.friends
+      data: auth.user.following
     }
   } else {
     return {}
@@ -64,4 +64,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FriendsList)
+export default connect(mapStateToProps, mapDispatchToProps)(FollowingList)
