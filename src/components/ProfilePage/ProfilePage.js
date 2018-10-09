@@ -5,7 +5,8 @@ import { Redirect } from 'react-router-dom'
 import { Container, Grid, Tab } from 'semantic-ui-react'
 import TopSection from './TopSection/TopSection'
 import ProfileSongList from './ProfileSongList'
-import FriendsList from './FriendsList'
+import FollowersList from './FollowersList'
+import FollowingList from './FollowingList'
 import FilterSongs from '../Main/FilterSongs'
 import './Profile.css'
 
@@ -29,14 +30,26 @@ class ProfilePage extends Component {
         )
       },
       {
-        menuItem: 'Friends',
+        menuItem: 'Followers',
         render: () => (
           <Tab.Pane
             style={{
               boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
             }}
             attached={false}>
-            <FriendsList history={this.props.history} />
+            <FollowersList history={this.props.history} />
+          </Tab.Pane>
+        )
+      },
+      {
+        menuItem: 'Following',
+        render: () => (
+          <Tab.Pane
+            style={{
+              boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+            }}
+            attached={false}>
+            <FollowingList history={this.props.history} />
           </Tab.Pane>
         )
       }

@@ -37,13 +37,18 @@ class TopSection extends Component {
       soundcloud_url
     } = this.props.friend
 
-    let { friends } = this.props
+    let { fetchFollowers, fetchFollowing } = this.props
     let { id: user_id } = this.props.user
 
     let followers =
-      friends.length < 2 && friends.length !== 0
-        ? `${friends.length} Follower`
-        : `${friends.length} Followers`
+      fetchFollowers.length < 2 && fetchFollowers.length !== 0
+        ? `${fetchFollowers.length} Follower`
+        : `${fetchFollowers.length} Followers`
+
+    let following =
+      fetchFollowing.length < 2 && fetchFollowing.length !== 0
+        ? `${fetchFollowing.length} Following`
+        : `${fetchFollowing.length} Following`
 
     return !this.props.friend ? (
       <Redirect to="/" />
@@ -65,13 +70,13 @@ class TopSection extends Component {
                 <br />
                 <br />
                 <div>
-                  {this.props.friends.find(f => {
-                    return f.id === id
+                  {fetchFollowers.find(f => {
+                    return f.id === user_id
                   }) ? (
                     <Button
                       disabled={user_id === id ? true : false}
                       onClick={e => {
-                        this.handleUnfollow(user_id, id)
+                        this.handleUnfollow(id, user_id)
                       }}
                       basic>
                       Unfollow
@@ -80,7 +85,7 @@ class TopSection extends Component {
                     <Button
                       disabled={user_id === id ? true : false}
                       onClick={e => {
-                        this.handleFollow(user_id, id)
+                        this.handleFollow(id, user_id)
                       }}
                       basic>
                       Follow
@@ -95,6 +100,7 @@ class TopSection extends Component {
                   <Item.Meta>{location}</Item.Meta>
                   <Item.Meta>{bio}</Item.Meta>
                   <Item.Meta>{followers}</Item.Meta>
+                  <Item.Meta>{following}</Item.Meta>
                   <Item.Meta>
                     <a target="_blank" href={soundcloud_url}>
                       <Icon size="huge" name="soundcloud" link={true} />
@@ -112,8 +118,9 @@ class TopSection extends Component {
 
 const mapStateToProps = (state, props) => ({
   user: state.auth.user,
-  friend: state.fetchFriend.friend,
-  friends: state.auth.friends
+  friend: state.auth.fetchFriend,
+  fetchFollowers: state.auth.fetchFollowers,
+  fetchFollowing: state.auth.fetchFollowing
 })
 
 const mapDispatchToProps = dispatch =>

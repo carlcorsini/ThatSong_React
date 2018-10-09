@@ -139,10 +139,10 @@ class FriendSongList extends Component {
     )
   }
 }
-const mapStateToProps = ({ fetchFriend, filterSongs }) => {
-  if (fetchFriend.friend.userSongs) {
+const mapStateToProps = ({ auth, filterSongs }) => {
+  if (auth.fetchFriend.userSongs) {
     return {
-      data: fetchFriend.friend.userSongs.filter(
+      data: auth.fetchFriend.userSongs.filter(
         song =>
           song.title.toLowerCase().includes(filterSongs.filterSongs) ||
           song.artist.toLowerCase().includes(filterSongs.filterSongs)
