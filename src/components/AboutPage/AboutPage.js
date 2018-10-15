@@ -33,7 +33,12 @@ class AboutPage extends Component {
                 <Header as="h3" style={{ fontSize: '4em' }}>
                   Step 2
                 </Header>
-                <Button animated size="big" inverted primary href="/signup">
+                <Button
+                  animated
+                  size="big"
+                  inverted
+                  primary
+                  href="https://chrome.google.com/webstore/detail/thatsong/anbbnfbonmbbfboffbagbcaoehhgkjmn">
                   <Button.Content visible>
                     Download Chrome Extension
                   </Button.Content>
@@ -46,7 +51,7 @@ class AboutPage extends Component {
                 </Header>
                 <p style={{ fontSize: '1.33em' }}>Watch tutorial!</p>
                 <Image
-                  href="https://beer-me-react.herokuapp.com"
+                  href="https://www.youtube.com/watch?v=zWdKutLttWI&feature=youtu.be"
                   bordered
                   rounded
                   size="medium"
