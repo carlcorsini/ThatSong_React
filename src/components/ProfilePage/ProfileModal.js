@@ -91,7 +91,7 @@ class ProfileModal extends Component {
     const { open, dimmer } = this.state
     return (
       <div>
-        <Button size="mini" basic secondary onClick={this.show('blurring')}>
+        <Button size="mini" basic onClick={this.show('blurring')}>
           Edit Profile
         </Button>
 

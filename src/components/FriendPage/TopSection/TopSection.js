@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Redirect } from 'react-router-dom'
+import FadeIn from 'react-fade-in'
 
 import {
   Container,
@@ -53,65 +54,71 @@ class TopSection extends Component {
     return !this.props.friend ? (
       <Redirect to="/" />
     ) : (
-      <Container className="top-section" fluid>
-        <Item.Group>
-          <Item>
-            <Segment.Group horizontal raised>
-              <Segment inverted>
-                <Item.Image
-                  rounded
-                  centered
-                  style={{
-                    boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
-                  }}
-                  size="small"
-                  src={profile_pic}
-                />
-                <br />
-                <br />
-                <div>
-                  {fetchFollowers.find(f => {
-                    return f.id === user_id
-                  }) ? (
-                    <Button
-                      disabled={user_id === id ? true : false}
-                      onClick={e => {
-                        this.handleUnfollow(id, user_id)
-                      }}
-                      basic>
-                      Unfollow
-                    </Button>
-                  ) : (
-                    <Button
-                      disabled={user_id === id ? true : false}
-                      onClick={e => {
-                        this.handleFollow(id, user_id)
-                      }}
-                      basic>
-                      Follow
-                    </Button>
-                  )}
-                </div>
-              </Segment>
-              <Segment inverted>
-                <Item.Content>
-                  <Header size="large">{username}</Header>
-                  <Item.Extra>{`${first_name} ${last_name}`}</Item.Extra>
-                  <Item.Meta>{location}</Item.Meta>
-                  <Item.Meta>{bio}</Item.Meta>
-                  <Item.Meta>{followers}</Item.Meta>
-                  <Item.Meta>{following}</Item.Meta>
-                  <Item.Meta>
-                    <a target="_blank" href={soundcloud_url}>
-                      <Icon size="huge" name="soundcloud" link={true} />
-                    </a>
-                  </Item.Meta>
-                </Item.Content>
-              </Segment>
-            </Segment.Group>
-          </Item>
-        </Item.Group>
-      </Container>
+      <FadeIn>
+        <Container className="top-section" fluid>
+          <Item.Group>
+            <Item>
+              <Segment.Group
+                horizontal
+                style={{
+                  boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+                }}>
+                <Segment inverted>
+                  <Item.Image
+                    rounded
+                    centered
+                    style={{
+                      boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+                    }}
+                    size="small"
+                    src={profile_pic}
+                  />
+                  <br />
+                  <br />
+                  <div>
+                    {fetchFollowers.find(f => {
+                      return f.id === user_id
+                    }) ? (
+                      <Button
+                        disabled={user_id === id ? true : false}
+                        onClick={e => {
+                          this.handleUnfollow(id, user_id)
+                        }}
+                        basic>
+                        Unfollow
+                      </Button>
+                    ) : (
+                      <Button
+                        disabled={user_id === id ? true : false}
+                        onClick={e => {
+                          this.handleFollow(id, user_id)
+                        }}
+                        basic>
+                        Follow
+                      </Button>
+                    )}
+                  </div>
+                </Segment>
+                <Segment inverted>
+                  <Item.Content>
+                    <Header size="large">{username}</Header>
+                    <Item.Extra>{`${first_name} ${last_name}`}</Item.Extra>
+                    <Item.Meta>{location}</Item.Meta>
+                    <Item.Meta>{bio}</Item.Meta>
+                    <Item.Meta>{followers}</Item.Meta>
+                    <Item.Meta>{following}</Item.Meta>
+                    <Item.Meta>
+                      <a target="_blank" href={soundcloud_url}>
+                        <Icon size="huge" name="soundcloud" link={true} />
+                      </a>
+                    </Item.Meta>
+                  </Item.Content>
+                </Segment>
+              </Segment.Group>
+            </Item>
+          </Item.Group>
+        </Container>
+      </FadeIn>
     )
   }
 }
