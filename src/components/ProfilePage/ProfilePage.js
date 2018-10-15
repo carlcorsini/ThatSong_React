@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Container, Grid, Tab } from 'semantic-ui-react'
 import TopSection from './TopSection/TopSection'
+// import SoundCloud from './TopSection/SoundCloud'
 import ProfileSongList from './ProfileSongList'
 import FollowersList from './FollowersList'
 import FollowingList from './FollowingList'
@@ -25,6 +26,7 @@ class ProfilePage extends Component {
               boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
             }}
             attached={false}>
+            <FilterSongs />
             <ProfileSongList />
           </Tab.Pane>
         )
@@ -58,7 +60,7 @@ class ProfilePage extends Component {
     return localStorage.getItem('isLoggedIn') ? (
       <Container divided="vertically">
         <Grid stackable columns="equal">
-          <Grid.Row>
+          <Grid.Row style={{ marginBottom: '-5em' }}>
             <Grid.Column>
               <FadeIn>
                 <Container style={{ marginTop: '1.3em', textAlign: 'left' }}>
@@ -66,20 +68,18 @@ class ProfilePage extends Component {
                 </Container>
               </FadeIn>
             </Grid.Column>
-            <Grid.Column>
-              <FadeIn>
-                <Container className="filter-input">
-                  <FilterSongs />
-                </Container>
-              </FadeIn>
-            </Grid.Column>
+            {/* <Grid.Column>
+              <Container className="soundcloud">
+                <SoundCloud songs={this.props.user.userSongs} />
+              </Container>
+            </Grid.Column> */}
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
               <FadeIn>
                 <Tab
                   style={{
-                    marginTop: '-1em',
+                    marginTop: '3em',
                     marginBottom: '5em'
                   }}
                   menu={{

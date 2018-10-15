@@ -9,6 +9,7 @@ class FilterSongs extends Component {
     return (
       <Segment
         style={{
+          backgroundColor: '#333',
           boxShadow: '1px 1px 10px 2px rgba(30, 31, 38, 0.58)'
         }}>
         <Form>

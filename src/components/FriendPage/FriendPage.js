@@ -25,6 +25,8 @@ class FriendPage extends Component {
               boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
             }}
             attached={false}>
+            <FilterSongs />
+
             <FriendSongList />
           </Tab.Pane>
         )
@@ -62,13 +64,6 @@ class FriendPage extends Component {
               <FadeIn>
                 <Container style={{ marginTop: '1.3em', textAlign: 'left' }}>
                   <TopSection />
-                </Container>
-              </FadeIn>
-            </Grid.Column>
-            <Grid.Column>
-              <FadeIn>
-                <Container className="filter-input">
-                  <FilterSongs />
                 </Container>
               </FadeIn>
             </Grid.Column>

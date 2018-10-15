@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Card, Image } from 'semantic-ui-react'
+import FadeIn from 'react-fade-in'
 import { fetchFriend } from '../../redux/actions/auth_actions'
 
 class FollowingList extends Component {
@@ -30,21 +31,23 @@ class FollowingList extends Component {
     const { data } = this.state
 
     return (
-      <Card.Group centered>
-        {_.map(data, ({ id: following_id, profile_pic, username }) => (
-          <Card
-            onClick={e => {
-              this.handleClickFriend(following_id)
-            }}
-            raised
-            key={following_id}>
-            <Image centered size="small" src={profile_pic} />
-            <Card.Content>
-              <Card.Header>{username}</Card.Header>
-            </Card.Content>
-          </Card>
-        ))}
-      </Card.Group>
+      <FadeIn>
+        <Card.Group centered>
+          {_.map(data, ({ id: following_id, profile_pic, username }) => (
+            <Card
+              onClick={e => {
+                this.handleClickFriend(following_id)
+              }}
+              raised
+              key={following_id}>
+              <Image centered size="small" src={profile_pic} />
+              <Card.Content>
+                <Card.Header>{username}</Card.Header>
+              </Card.Content>
+            </Card>
+          ))}
+        </Card.Group>
+      </FadeIn>
     )
   }
 }
