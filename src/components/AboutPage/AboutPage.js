@@ -26,6 +26,7 @@ class AboutPage extends Component {
                   size="massive"
                   inverted
                   primary
+                  target="_blank"
                   href="/signup">
                   <Button.Content visible>Sign Up</Button.Content>
                   <Button.Content hidden>Do it.</Button.Content>
@@ -38,6 +39,7 @@ class AboutPage extends Component {
                   size="big"
                   inverted
                   primary
+                  target="_blank"
                   href="https://chrome.google.com/webstore/detail/thatsong/anbbnfbonmbbfboffbagbcaoehhgkjmn">
                   <Button.Content visible>
                     Download Chrome Extension
