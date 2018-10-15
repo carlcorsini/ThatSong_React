@@ -76,7 +76,7 @@ class AboutPage extends Component {
             textAlign: 'left'
           }}>
           <p>
-            ThatSong is a platform which enables users to log, navigate and
+            ThatSong is a platform that enables users to log, navigate, and
             organize timestamps from tracks on Soundcloud.
           </p>
           <Divider horizontal>
@@ -84,14 +84,14 @@ class AboutPage extends Component {
           </Divider>
           <p>
             ThatSong utilizes a chrome extension which makes saving timestamps
-            truly as easy as a click of a button!
+            as easy as a click of a button!
           </p>
           <Divider horizontal>
             <Icon name="music" />
           </Divider>
           <p>
-            that-song.com enables users to browse and manage their saved tracks,
-            other users tracks, as well follow other users.
+            This site: "that-song.com" enables users to browse and manage their
+            saved tracks, other users tracks, as well follow other users.
           </p>
           <Divider horizontal>
             <Icon name="music" />
