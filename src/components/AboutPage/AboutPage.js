@@ -52,12 +52,13 @@ class AboutPage extends Component {
                   Step 3
                 </Header>
                 <p style={{ fontSize: '1.33em' }}>Watch tutorial!</p>
-                <Image
-                  href="https://www.youtube.com/watch?v=zWdKutLttWI&feature=youtu.be"
-                  bordered
-                  rounded
-                  size="medium"
-                  src="https://i.imgur.com/CyXMJIl.png"
+                <iframe
+                  width="400"
+                  height="250"
+                  src="https://www.youtube.com/embed/zWdKutLttWI"
+                  frameborder="0"
+                  allow="autoplay; encrypted-media"
+                  allowfullscreen
                 />
               </Grid.Column>
             </Grid.Row>
