@@ -48,17 +48,16 @@ class TopSection extends Component {
                   />
                   <br />
                   <br />
-                  <div>
-                    <ProfileModal user={this.props.user} />
-                    <Button
-                      as="a"
-                      href={`data: ${data}`}
-                      download={`${username}_songs.json`}
-                      size="mini"
-                      basic>
-                      Download Song Data
-                    </Button>
-                  </div>
+
+                  <ProfileModal user={this.props.user} />
+                  <Button
+                    as="a"
+                    content="Download Song Data"
+                    basic
+                    size="mini"
+                    href={`data: ${data}`}
+                    download={`${username}_songs.json`}
+                  />
                 </Segment>
                 <Segment inverted>
                   <Item.Content>
