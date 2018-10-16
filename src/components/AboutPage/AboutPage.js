@@ -5,7 +5,6 @@ import {
   Divider,
   Grid,
   Header,
-  Image,
   Button
 } from 'semantic-ui-react'
 
@@ -58,7 +57,7 @@ class AboutPage extends Component {
                   src="https://www.youtube.com/embed/zWdKutLttWI"
                   frameborder="0"
                   allow="autoplay; encrypted-media"
-                  allowfullscreen
+                  allowfullscreen="yes"
                 />
               </Grid.Column>
             </Grid.Row>
