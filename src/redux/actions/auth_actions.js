@@ -35,10 +35,9 @@ export const userLogin = (credentials, history) => {
     try {
       const user = await authenticate(credentials)
 
-      const { token, friends } = await user
+      const { token } = await user
       localStorage.setItem('token', token)
       localStorage.setItem('isLoggedIn', true)
-      localStorage.setItem('friends', JSON.stringify(friends))
 
       dispatch({ type: USER_LOGIN_PENDING })
       dispatch({
@@ -61,7 +60,7 @@ export const userLogout = history => {
     try {
       localStorage.removeItem('token')
       localStorage.removeItem('isLoggedIn')
-      localStorage.removeItem('friends')
+
       dispatch({ type: 'USER_LOGOUT' })
       history.push(`/that`)
     } catch (error) {}
