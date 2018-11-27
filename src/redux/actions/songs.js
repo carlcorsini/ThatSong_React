@@ -10,17 +10,11 @@ export const fetchSongs = () => {
   return async dispatch => {
     try {
       let response = await fetch(`${env.default}/songs`)
-<<<<<<< HEAD
+
       let songs = await response.json()
       dispatch({
         type: FETCH_SONGS_SUCCESS,
         payload: songs
-=======
-      let posts = await response.json()
-      dispatch({
-        type: FETCH_SONGS_SUCCESS,
-        payload: posts
->>>>>>> 4e0584d7937486c0144b63dc2f469acbea05af62
       })
     } catch (err) {
       dispatch({

@@ -53,6 +53,7 @@ class AboutPage extends Component {
                 </Header>
                 <p style={{ fontSize: '1.33em' }}>Watch tutorial!</p>
                 <iframe
+                  title="thatSong-walkthrough"
                   width="350"
                   height="200"
                   src="https://www.youtube.com/embed/zWdKutLttWI"
