@@ -7,13 +7,16 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Table, Icon } from 'semantic-ui-react'
 import { fetchFriend } from '../../redux/actions/auth_actions'
 
+// this component is the table of songs pulled in from that-song-backend.
+
 class SongList extends Component {
+  // initial state set for sortable table columns
   state = {
     column: null,
     data: [],
     direction: null
   }
-
+  // below prevents bug from conditional rendering based on props
   componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data) {
       this.setState({ data: nextProps.data })
@@ -21,12 +24,14 @@ class SongList extends Component {
   }
 
   componentDidMount() {
+    // setting state with data from props (I have read is a no-no in react but I am struggling to find another solution)
     this.setState({ data: this.props.data })
   }
 
+  // handle sort method which is bound to on click of each column header
   handleSort = clickedColumn => () => {
     const { column, direction, data } = this.state
-
+    // if this is a new column clicked sort by it's attribute
     if (column !== clickedColumn) {
       this.setState({
         column: clickedColumn,
@@ -36,13 +41,14 @@ class SongList extends Component {
 
       return
     }
-
+    // otherwise reverse order of current sort
     this.setState({
       data: data.reverse(),
       direction: direction === 'ascending' ? 'descending' : 'ascending'
     })
   }
 
+  // method that handles clicking on another user's username
   handleClickFriend = id => {
     this.props.fetchFriend(id, this.props.history)
   }
@@ -51,6 +57,7 @@ class SongList extends Component {
     const { column, direction, data } = this.state
 
     return (
+      //notice each <Table.HeaderCell> has this.handleSort('column-name') bound to onClick.
       <Table striped sortable celled inverted>
         <Table.Header>
           <Table.Row>
@@ -89,6 +96,7 @@ class SongList extends Component {
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
+        {/* map through data and create rows, each row with specific funtionality depending on data type  */}
         <Table.Body>
           {_.map(
             data,
@@ -149,6 +157,7 @@ class SongList extends Component {
   }
 }
 
+// data received for component is filtered using redux and "FilterSongs" component.
 const mapStateToProps = ({ songs, filterSongs, history }) => {
   return {
     data: songs.data.filter(
