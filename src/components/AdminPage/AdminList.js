@@ -9,6 +9,7 @@ import { Table, Icon } from 'semantic-ui-react'
 import { updateProfile } from '../../redux/actions/auth_actions'
 import { destroySong } from '../../redux/actions/songs'
 
+// The admin list is similar to ./Main/SongList.js but contains different columns for admin functionality, next a AdminUserList will be added to enable editing and deleting users via UI.
 class AdminList extends Component {
   state = {
     column: null,

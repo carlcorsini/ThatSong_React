@@ -7,7 +7,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Table, Icon } from 'semantic-ui-react'
 import { fetchFriend } from '../../redux/actions/auth_actions'
 
-// this component is the table of songs pulled in from that-song-backend.
+// this component is a sortable table of songs pulled in from that-song-backend.
 
 class SongList extends Component {
   // initial state set for sortable table columns

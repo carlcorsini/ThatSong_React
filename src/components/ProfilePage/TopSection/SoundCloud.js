@@ -10,6 +10,7 @@ import {
   Button
 } from 'semantic-ui-react'
 
+// This SoundCloud component is a wrapper for the soundcloud iframe. It is currently under development and not in user by ThatSong
 class SoundCloud extends Component {
   render() {
     let song = this.props.songs

@@ -11,7 +11,7 @@ import SignupPage from './components/LoginSignup/SignupPage'
 import AboutPage from './components/AboutPage/AboutPage'
 import './App.css'
 
-// this app uses
+// this app uses react router to navigate through the app, I am trying to figure out how to redirect any other route to the home page. For instance that-song.com/other should redirect to '/that'
 
 class App extends Component {
   render() {

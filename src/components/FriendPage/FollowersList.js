@@ -6,11 +6,10 @@ import { bindActionCreators } from 'redux'
 import { Card, Image } from 'semantic-ui-react'
 import { fetchFriend } from '../../redux/actions/auth_actions'
 
+// FollowersList is a display for who is following this particular user. If you follow or unfollow a user, you will see your profile appear and dissapear in this component
 class FollowersList extends Component {
   state = {
-    column: null,
-    data: [],
-    direction: null
+    data: []
   }
 
   componentWillReceiveProps(nextProps) {

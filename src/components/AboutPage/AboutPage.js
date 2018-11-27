@@ -8,6 +8,7 @@ import {
   Button
 } from 'semantic-ui-react'
 
+// the about page is self explanitory. A page with info about That-Song, where to download and an iframe youtube walkthrough of how to use the app.
 class AboutPage extends Component {
   render() {
     return (

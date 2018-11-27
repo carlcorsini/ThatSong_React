@@ -6,6 +6,7 @@ import { userSignup } from '../../redux/actions/auth_actions'
 
 import { Grid, Segment, Button, Header, Form, Message } from 'semantic-ui-react'
 
+// the signup page uses redux to send a log in request to the that-song-back-end and updates the authentication state of the app depending on success/failure
 class SignupPage extends Component {
   state = {
     isValid: true,

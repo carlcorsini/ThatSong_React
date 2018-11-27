@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Item, Header, Segment, Icon } from 'semantic-ui-react'
 import './AdminTopSection.css'
+
+// this is the top section of the admin page, containing the user information. AdminPage is only accesible to Admins
 class AdminTopSection extends Component {
   render() {
     let {

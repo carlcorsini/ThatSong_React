@@ -6,6 +6,7 @@ import FadeIn from 'react-fade-in'
 import { Card, Image } from 'semantic-ui-react'
 import { fetchFriend } from '../../redux/actions/auth_actions'
 
+// Followers List display's the logged-in user's followers
 class FollowersList extends Component {
   state = {
     column: null,

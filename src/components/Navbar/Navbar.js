@@ -3,8 +3,9 @@ import { Menu, Icon } from 'semantic-ui-react'
 import { userLogout } from '../../redux/actions/auth_actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
 import './Navbar.css'
+
+//The NavbarComponent dynamically renders certain elements based on user being authenticated or having admin rights to the application. The Navbar can navigate the user to the home, about, log-in, and sign-up pages. If user is logged in Navbar will display navigation to user's profile and a log-out functionality. If user is Admin, navbar will display navigation to Admin page
 class NavbarComponent extends Component {
   handleLogout = e => {
     e.preventDefault()

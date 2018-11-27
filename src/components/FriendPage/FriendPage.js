@@ -10,6 +10,7 @@ import FollowingList from './FollowingList'
 import FilterSongs from '../Main/FilterSongs'
 import './Friend.css'
 
+//FriendPage contains 4 components: FriendSongList, FollowersList, FollowingList, and TopSection. This page is rendered when a user views another user's profile. You are able to navigate and/or filter through the viewed users song data, followers and following.
 class FriendPage extends Component {
   componentDidMount() {
     this.setState({ friend: this.props.friend })

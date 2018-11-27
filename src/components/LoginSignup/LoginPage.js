@@ -16,6 +16,7 @@ import {
   Message
 } from 'semantic-ui-react'
 
+// the login page uses redux to send a log in request to the that-song-back-end and updates the authentication state of the app depending on success/failure
 class LoginPage extends Component {
   state = {
     showLoginError: false,

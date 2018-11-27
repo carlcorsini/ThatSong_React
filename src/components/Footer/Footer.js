@@ -3,6 +3,7 @@ import { Menu, Icon } from 'semantic-ui-react'
 
 import './Footer.css'
 
+// the footer is a small menu component which enables the user to go to the top of the page or go home
 class FooterComponent extends Component {
   render() {
     return (

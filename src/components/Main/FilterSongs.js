@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { filterSongs } from '../../redux/actions/songs'
 
+// FilterSongs is acomponent which uses redux in order to save a 'filter' string and compare it to the data coming in from our backend. It will use the string from the input of this form in order to filter data displayed in our multiple SongLists
 class FilterSongs extends Component {
   render() {
     return (

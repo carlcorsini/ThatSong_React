@@ -10,6 +10,8 @@ import {
 } from 'semantic-ui-react'
 import './TopSection.css'
 import ProfileModal from '../ProfileModal'
+
+//Top Section is where the logged-in user's information will display, the TopSection includes a button which allows the user to download their song-data in JSON format
 class TopSection extends Component {
   render() {
     let {
@@ -56,6 +58,7 @@ class TopSection extends Component {
                     basic
                     size="mini"
                     href={`data: ${data}`}
+                    //Button for downloading user data as JSON
                     download={`${username}_songs.json`}
                   />
                 </Segment>

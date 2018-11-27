@@ -11,6 +11,7 @@ import FollowingList from './FollowingList'
 import FilterSongs from '../Main/FilterSongs'
 import './Profile.css'
 
+// The profile page contains 5 components organized by Semantic-UI grid and container. The components are: TopSection, ProfileSongList, FollowersList, FollowingList, FilterSongs
 class ProfilePage extends Component {
   componentDidMount() {
     this.setState({ user: this.props.user })

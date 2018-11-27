@@ -6,6 +6,7 @@ import { Card, Image } from 'semantic-ui-react'
 import FadeIn from 'react-fade-in'
 import { fetchFriend } from '../../redux/actions/auth_actions'
 
+//FollowingList is a display for which users the user who is being viewed follows.
 class FollowingList extends Component {
   state = {
     column: null,

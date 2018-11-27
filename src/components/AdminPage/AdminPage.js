@@ -7,6 +7,7 @@ import AdminList from './AdminList'
 import FilterSongs from '../Main/FilterSongs'
 import './Admin.css'
 
+// the Admin Page contains 3 components: AdminTopSection, AdminList, FilterSongs the purpose of this page is to allow the admin user to modify and maintain the database through a user interface.
 class AdminPage extends Component {
   render() {
     return (

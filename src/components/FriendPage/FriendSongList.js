@@ -8,6 +8,7 @@ import FadeIn from 'react-fade-in'
 import { Table, Icon } from 'semantic-ui-react'
 import { destroySong } from '../../redux/actions/songs'
 
+//FriendSongList is very similar to ./Main/SongList but contains certain columns specific to the Friend's page
 class FriendSongList extends Component {
   state = {
     column: null,
@@ -126,6 +127,7 @@ class FriendSongList extends Component {
                   <Table.Cell
                     style={{ textAlign: 'center', cursor: 'pointer' }}
                     selectable>
+                    {/* Copy to Cliboard email functionality  */}
                     <CopyToClipboard
                       text={`https://soundcloud.com${url}#t=${timestamp}`}>
                       <Icon fitted size="large" name="copy" />

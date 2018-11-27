@@ -8,6 +8,7 @@ import { Table, Icon } from 'semantic-ui-react'
 import { destroySong } from '../../redux/actions/songs'
 import _ from 'lodash'
 
+//ProfileSongList display's the logged-in user's song data with certain columns specific to the user page. The user page includes a delete button which is currently not synced up with redux although functional
 class ProfileSongList extends Component {
   state = {
     column: null,

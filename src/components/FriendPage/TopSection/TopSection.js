@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Redirect } from 'react-router-dom'
 import FadeIn from 'react-fade-in'
 
+// the TopSection of the FriendPage display's the information for the user whos profile you are viewing. It also gives the ability to follow and unfollow the viewed user and updates the statistics with redux.
 import {
   Container,
   Item,

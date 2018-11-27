@@ -5,6 +5,7 @@ import { updateProfile } from '../../redux/actions/auth_actions'
 import { destroyUser } from '../../redux/actions/deleteUser'
 import { Button, Image, Modal, Form, Input, Icon } from 'semantic-ui-react'
 
+//ProfileModal allows the user to update their information or delete their profile
 class ProfileModal extends Component {
   state = {
     open: false,

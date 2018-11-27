@@ -4,6 +4,7 @@ import { Container, Grid } from 'semantic-ui-react'
 import SongList from './SongList'
 import FilterSongs from './FilterSongs'
 
+// The Main Page contains 2 components: SongList and FilterSongs, organized by using semantic-ui Grid and Container. Some in line styling for minor tweaks.
 class Main extends Component {
   render() {
     return (
