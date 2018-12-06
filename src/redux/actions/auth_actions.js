@@ -33,13 +33,13 @@ export const FETCH_FRIEND_FAILED = 'FETCH_FRIEND_FAILED'
 export const userLogin = (credentials, history) => {
   return async dispatch => {
     try {
+      dispatch({ type: USER_LOGIN_PENDING })
       const user = await authenticate(credentials)
 
       const { token } = await user
       localStorage.setItem('token', token)
       localStorage.setItem('isLoggedIn', true)
 
-      dispatch({ type: USER_LOGIN_PENDING })
       dispatch({
         type: USER_LOGIN_SUCCESS,
         payload: { user, token }
@@ -49,7 +49,7 @@ export const userLogin = (credentials, history) => {
     } catch (err) {
       dispatch({
         type: USER_LOGIN_FAILED,
-        payload: err
+        payload: err.message
       })
     }
   }

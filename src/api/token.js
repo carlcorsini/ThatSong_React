@@ -10,6 +10,7 @@ export default async function authenticate(credentials) {
       body: JSON.stringify(credentials)
     })
     const body = await response.json()
+
     if (body.error) throw new Error(body.message)
     return body
   } catch (error) {
