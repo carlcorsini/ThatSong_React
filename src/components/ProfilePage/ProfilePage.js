@@ -24,38 +24,38 @@ class ProfilePage extends Component {
         render: () => (
           <Tab.Pane
             style={{
-              boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+              boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)',
             }}
             attached={false}>
             <FilterSongs />
             <ProfileSongList />
           </Tab.Pane>
-        )
+        ),
       },
       {
         menuItem: 'Followers',
         render: () => (
           <Tab.Pane
             style={{
-              boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+              boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)',
             }}
             attached={false}>
             <FollowersList history={this.props.history} />
           </Tab.Pane>
-        )
+        ),
       },
       {
         menuItem: 'Following',
         render: () => (
           <Tab.Pane
             style={{
-              boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)'
+              boxShadow: '1px 1px 10px 1px rgba(30, 31, 38, 0.58)',
             }}
             attached={false}>
             <FollowingList history={this.props.history} />
           </Tab.Pane>
-        )
-      }
+        ),
+      },
     ]
 
     return localStorage.getItem('isLoggedIn') ? (
@@ -81,11 +81,11 @@ class ProfilePage extends Component {
                 <Tab
                   style={{
                     marginTop: '3em',
-                    marginBottom: '5em'
+                    marginBottom: '5em',
                   }}
                   menu={{
                     compact: true,
-                    pointing: true
+                    pointing: true,
                   }}
                   panes={panes}
                 />
@@ -101,7 +101,7 @@ class ProfilePage extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  user: state.auth.user
+  user: state.auth.user,
 })
 
 export default connect(mapStateToProps, null)(ProfilePage)

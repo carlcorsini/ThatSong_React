@@ -5,7 +5,7 @@ import {
   Divider,
   Grid,
   Header,
-  Button
+  Button,
 } from 'semantic-ui-react'
 
 // the about page is self explanitory. A page with info about That-Song, where to download and an iframe youtube walkthrough of how to use the app.
@@ -74,7 +74,7 @@ class AboutPage extends Component {
             marginTop: '2em',
             fontSize: '1.8em',
             paddingBottom: '2em',
-            textAlign: 'left'
+            textAlign: 'left',
           }}>
           <p>
             ThatSong is a platform that enables users to log, navigate, and
