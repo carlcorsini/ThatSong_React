@@ -1,13 +1,13 @@
-import env from '../env'
+import API_BASE_URL from '../env'
 const token = localStorage.getItem('token')
 
 export default async function getUser(id) {
   try {
-    const response = await fetch(`${env.default}/users/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/users/${id}`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token
-      }
+        Authorization: token,
+      },
     })
     const body = await response.json()
     if (response.status !== 200) throw new Error(body.message)

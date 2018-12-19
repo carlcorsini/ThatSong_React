@@ -1,8 +1,8 @@
-import env from '../env'
+import API_BASE_URL from '../env'
 const token = localStorage.getItem('token')
 
 export default function unfollow(follower_id, followee_id) {
-  return fetch(`${env.default}/friends`, {
+  return fetch(`${API_BASE_URL }/friends`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

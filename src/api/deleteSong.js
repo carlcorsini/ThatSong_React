@@ -1,8 +1,8 @@
-import env from '../env'
+import API_BASE_URL from '../env'
 const token = localStorage.getItem('token')
 
 export default function deleteSong(id) {
-  return fetch(`${env.default}/songs/${id}`, {
+  return fetch(`${API_BASE_URL }/songs/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

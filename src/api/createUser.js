@@ -1,11 +1,11 @@
-import env from '../env'
+import API_BASE_URL from '../env'
 
 export default function createUser(attributes) {
-  return fetch(`${env.default}/users/register`, {
+  return fetch(`${API_BASE_URL}/users/register`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(attributes)
+    body: JSON.stringify(attributes),
   }).then(response => response.json())
 }

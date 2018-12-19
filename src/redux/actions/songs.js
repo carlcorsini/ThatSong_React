@@ -1,4 +1,4 @@
-import env from '../../env'
+import API_BASE_URL from '../../env'
 import deleteSong from '../../api/deleteSong'
 
 export const FETCH_SONGS_SUCCESS = 'FETCH_SONGS_SUCCESS'
@@ -9,17 +9,18 @@ export const DELETE_SONG_SUCCESS = 'DELETE_SONG_SUCCESS'
 export const fetchSongs = () => {
   return async dispatch => {
     try {
-      let response = await fetch(`${env.default}/songs`)
+      console.log(API_BASE_URL)
+      let response = await fetch(`${API_BASE_URL}/songs`)
 
       let songs = await response.json()
       dispatch({
         type: FETCH_SONGS_SUCCESS,
-        payload: songs
+        payload: songs,
       })
     } catch (err) {
       dispatch({
         type: FETCH_SONGS_FAILED,
-        payload: err
+        payload: err,
       })
     }
   }
@@ -29,7 +30,7 @@ export const filterSongs = (str, type) => {
   return dispatch => {
     dispatch({
       type: FILTER_SONG,
-      payload: { filterSongs: str, type }
+      payload: { filterSongs: str, type },
     })
   }
 }
