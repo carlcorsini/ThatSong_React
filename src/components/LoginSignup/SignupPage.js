@@ -42,7 +42,6 @@ class SignupPage extends Component {
         username,
         password
       }
-
       this.props.userSignup(newUser, this.props.history)
     }
   }
